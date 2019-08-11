@@ -121,7 +121,7 @@ void wid_get_abs_coords(widp w,
                         int32_t *bry);
 
 void wid_get_abs(widp w, int32_t *x, int32_t *y);
-void wid_get_pct(widp w, double *x, double *y);
+void wid_get_pct(widp w, Double *x, Double *y);
 
 /*
  * Text input.
@@ -165,8 +165,8 @@ typedef void(*on_display_top_level_t)(widp);
 typedef void(*on_display_t)(widp, fpoint tl, fpoint br);
 
 typedef widp (*grid_wid_replace_t)(widp,
-                                   double x,
-                                   double y,
+                                   Double x,
+                                   Double y,
                                    thingp, 
                                    tpp, 
                                    tpp_data,
@@ -226,12 +226,12 @@ double wid_get_bevel(widp);
 double wid_get_br_x(widp);
 double wid_get_br_y(widp);
 double wid_get_height(widp);
-void wid_get_mxy(widp w, double *x, double *y);
+void wid_get_mxy(widp w, Double *x, Double *y);
 double wid_get_mode_bevel(widp);
 double wid_get_text_advance(widp);
 double wid_get_text_scaling(widp);
-double wid_get_tl_x(widp);
-double wid_get_tl_y(widp);
+Double wid_get_tl_x(widp);
+Double wid_get_tl_y(widp);
 double wid_get_cx(widp);
 double wid_get_cy(widp);
 double wid_get_width(widp);
@@ -287,7 +287,7 @@ void wid_move_to_vert_pct(widp w, double pct);
 void wid_move_to_horiz_pct(widp w, double pct);
 void wid_move_to_vert_pct_in(widp w, double pct, double in);
 void wid_move_to_horiz_pct_in(widp w, double pct, double in);
-void wid_get_move_interpolated_progress(widp w, double *dx, double *dy);
+void wid_get_move_interpolated_progress(widp w, Double *dx, Double *dy);
 
 double wid_get_scaling_w(widp);
 double wid_get_scaling_h(widp);

@@ -110,7 +110,7 @@ const char *name_random (const char *pclass)
             "Ser Applespice",
             "Ser Ben",
             "Ser Bob",
-            "Ser Doublebob",
+            "Ser doublebob",
             "Ser Benalot",
             "Ser Blackeye",
             "Ser Blackguard",

@@ -143,6 +143,7 @@ static void putf (FILE *fp, const char *s)
 
 static void log_ (const char *fmt, va_list args)
 {
+#ifdef ENABLE_LOG
     char buf[MAXSTR];
     uint32_t len;
 
@@ -153,19 +154,23 @@ static void log_ (const char *fmt, va_list args)
 
     putf(MY_STDOUT, buf);
     fflush(MY_STDOUT);
+#endif
 }
 
 void LOG (const char *fmt, ...)
 {
+#ifdef ENABLE_LOG
     va_list args;
 
     va_start(args, fmt);
     log_(fmt, args);
     va_end(args);
+#endif
 }
 
 static void logs_ (const char *fmt, va_list args)
 {
+#ifdef ENABLE_LOG
     char buf[MAXSTR];
 
     buf[0] = '\0';
@@ -173,15 +178,19 @@ static void logs_ (const char *fmt, va_list args)
 
     fwrite(buf, strlen(buf), 1, MY_STDOUT);
     fflush(MY_STDOUT);
+#endif
 }
 
 void LOGS (const char *fmt, ...)
 {
+#ifdef ENABLE_LOG
+
     va_list args;
 
     va_start(args, fmt);
     logs_(fmt, args);
     va_end(args);
+#endif
 }
 
 static void warn_ (const char *fmt, va_list args)
@@ -386,6 +395,7 @@ void DYING (const char *fmt, ...)
 
 void DBG (const char *fmt, ...)
 {
+#ifdef ENABLE_LOG
     va_list args;
 
     if (!debug_enabled) {
@@ -395,6 +405,7 @@ void DBG (const char *fmt, ...)
     va_start(args, fmt);
     log_(fmt, args);
     va_end(args);
+#endif
 }
 
 void ERR (const char *fmt, ...)
@@ -435,8 +446,8 @@ static void msg_server_shout_at_all_players_ (uint32_t level,
 }
 
 void MSG_SERVER_SHOUT_AT_ALL_PLAYERS (uint32_t level,
-                                      double x, 
-                                      double y, 
+                                      Double x, 
+                                      Double y, 
                                       const char *fmt, ...)
 {
     va_list args;
@@ -626,8 +637,8 @@ static void msg_ (uint32_t level,
 
 void MSG_CLIENT_SHOUT_AT (uint32_t level, 
                           uint32_t thing_id,
-                          double x,
-                          double y,
+                          Double x,
+                          Double y,
                           const char *fmt, ...)
 {
     va_list args;
@@ -652,8 +663,8 @@ static void msg_server_shout_at_ (uint32_t level,
 
 void MSG_SERVER_SHOUT_AT (uint32_t level,
                           thingp t,
-                          double x,
-                          double y,
+                          Double x,
+                          Double y,
                           const char *fmt, ...)
 {
     va_list args;
@@ -667,6 +678,7 @@ void MSG_SERVER_SHOUT_AT (uint32_t level,
 
 static void thing_log_ (thingp t, const char *fmt, va_list args)
 {
+#if 0
     char buf[MAXSTR];
     uint32_t len;
 
@@ -685,6 +697,7 @@ static void thing_log_ (thingp t, const char *fmt, va_list args)
 
     putf(MY_STDOUT, buf);
     fflush(MY_STDOUT);
+#endif
 }
 
 void THING_LOG (thingp t, const char *fmt, ...)
@@ -700,6 +713,7 @@ void THING_LOG (thingp t, const char *fmt, ...)
 
 static void thing_con_ (thingp t, const char *fmt, va_list args)
 {
+#if 0
     char buf[MAXSTR];
     uint32_t len;
 
@@ -721,6 +735,7 @@ static void thing_con_ (thingp t, const char *fmt, va_list args)
 
     wid_console_log(buf);
     term_log(buf);
+#endif
 }
 
 void THING_CON (thingp t, const char *fmt, ...)

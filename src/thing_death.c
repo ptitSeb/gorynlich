@@ -23,8 +23,8 @@ uint8_t thing_death_spawn (void)
     uint32_t tries = 1000;
 
     while (tries-- > 0) {
-        double x;
-        double y;
+        Double x;
+        Double y;
 
         x = myrand() % MAP_WIDTH;
         y = myrand() % MAP_HEIGHT;

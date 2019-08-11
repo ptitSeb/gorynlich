@@ -190,8 +190,8 @@ static void wid_editor_set_new_tp (int x, int y, int z,
  * Replace or place a tile.
  */
 widp wid_editor_replace_template (widp w,
-                                  double x,
-                                  double y,
+                                  Double x,
+                                  Double y,
                                   thingp t,
                                   tpp tp,
                                   tpp_data data,

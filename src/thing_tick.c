@@ -251,8 +251,8 @@ static void thing_tick_server_all (void)
              * Only if it finished moving the last delta.
              */
             if ((t->dx != 0) || (t->dy != 0)) {
-                double fnexthop_x = t->x + t->dx;
-                double fnexthop_y = t->y + t->dy;
+                Double fnexthop_x = t->x + t->dx;
+                Double fnexthop_y = t->y + t->dy;
 
                 thing_server_move(t,
                         fnexthop_x,

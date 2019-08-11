@@ -20,10 +20,10 @@
 #include "socket_util.h"
 #include "wid_game_map_server.h"
 
-double thing_stats_get_total_vision (thingp t, double vision)
+Double thing_stats_get_total_vision (thingp t, Double vision)
 {
-    double modifier = thing_stats_val_to_modifier(thing_stats_get_vision(t));
-    double final_vision = ceil(vision + (vision * (modifier / 10.0)));
+    Double modifier = thing_stats_val_to_modifier(thing_stats_get_vision(t));
+    Double final_vision = ceil(vision + (vision * (modifier / 10.0)));
 
     /*
      * Allow dark vision once modifiers are high enough.
@@ -41,7 +41,7 @@ double thing_stats_get_total_vision (thingp t, double vision)
     return (final_vision);
 }
 
-void level_place_light (levelp level, double x, double y)
+void level_place_light (levelp level, Double x, Double y)
 {
     int ix = (int)x;
     int iy = (int)y;

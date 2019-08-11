@@ -14,8 +14,8 @@ static widp thing_place_ (thingp t,
                           const int under, 
                           const int behind)
 {
-    double dx = 0;
-    double dy = 0;
+    Double dx = 0;
+    Double dy = 0;
     item_t item = {0};
 
     if (item_in) {
@@ -29,8 +29,8 @@ static widp thing_place_ (thingp t,
     }
 
     if (t && under) {
-        double x;
-        double y;
+        Double x;
+        Double y;
 
         thing_real_to_fmap(t, &x, &y);
 
@@ -71,8 +71,8 @@ static widp thing_place_ (thingp t,
     dx /= 2.0;
     dy /= 2.0;
 
-    double x;
-    double y;
+    Double x;
+    Double y;
     thing_real_to_fmap(t, &x, &y);
     x += dx;
     y += dy;
@@ -125,8 +125,8 @@ static widp thing_place_ (thingp t,
                 continue;
             }
 
-            double x;
-            double y;
+            Double x;
+            Double y;
             thing_real_to_fmap(t, &x, &y);
             x += dx;
             y += dy;
@@ -173,8 +173,8 @@ static widp thing_place_ (thingp t,
                 continue;
             }
 
-            double x;
-            double y;
+            Double x;
+            Double y;
             thing_real_to_fmap(t, &x, &y);
             x += dx;
             y += dy;

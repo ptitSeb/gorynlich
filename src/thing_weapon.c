@@ -66,7 +66,7 @@ void thing_set_weapon_carry_anim (thingp t, thingp weapon_carry_anim)
         /*
          * Scale up weapons so they look the same size as the carryer.
          */
-        double scale = tp_get_scale(t->tp);
+        Double scale = tp_get_scale(t->tp);
         if (scale != 1.0) {
             wid_scaling_blit_to_pct_in(weapon_carry_anim->wid, scale, scale, 500, 9999999);
         }
@@ -130,7 +130,7 @@ void thing_set_weapon_swing_anim (thingp t, thingp weapon_swing_anim)
         /*
          * Scale up weapons so they look the same size as the carryer.
          */
-        double scale = tp_get_scale(t->tp);
+        Double scale = tp_get_scale(t->tp);
         if (scale != 1.0) {
             wid_scaling_blit_to_pct_in(weapon_swing_anim->wid, scale, scale, 500, 9999999);
         }
@@ -139,7 +139,7 @@ void thing_set_weapon_swing_anim (thingp t, thingp weapon_swing_anim)
     }
 }
 
-void thing_weapon_swing_offset (thingp t, double *dx, double *dy)
+void thing_weapon_swing_offset (thingp t, Double *dx, Double *dy)
 {
     tpp weapon = thing_weapon(t);
     if (!weapon) {
@@ -149,8 +149,8 @@ void thing_weapon_swing_offset (thingp t, double *dx, double *dy)
     *dx = 0;
     *dy = 0;
 
-    double dist_from_player = 
-        ((double)tp_get_swing_distance_from_player(weapon)) / 10.0;
+    Double dist_from_player = 
+        ((Double)tp_get_swing_distance_from_player(weapon)) / 10.0;
 
     if (thing_has_ability_reverse_swing(t)) {
 

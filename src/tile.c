@@ -130,14 +130,39 @@ void tile_load_arr (const char *tex_name,
     uint32_t y = 0;
     uint32_t idx = 0;
 
+    uint32_t fake_width = tex_get_width(tex);
+    uint32_t fake_height = tex_get_height(tex);
+
+    uint32_t real_x = 0;
+    uint32_t real_y = 0;
+
+    uint32_t faking = 0;
+
     size pixel_size;
 
     pixel_size.width = width;
     pixel_size.height = height;
 
+    uint32_t real_height = fake_height / height;
+
+    if (fake_width==2048 && fake_height==2048) {
+        fake_width = 1024;
+        fake_height = 4096;
+        faking = 1;
+    }
+
+
     while (nargs--) {
 
         const char *name = arr[idx++];
+
+        if(faking) {
+            real_x = x + (y/real_height)*width;
+            real_y = y%real_height;
+        } else {
+            real_x = x;
+            real_y = y;
+        }
 
         if (name) {
             tile *t;
@@ -168,28 +193,27 @@ void tile_load_arr (const char *tex_name,
                                 tex_get_gl_binding(tex_black_and_white);
             }
 
-            t->x1 = fw * (float)(x);
-            t->y1 = fh * (float)(y);
+            t->x1 = fw * (float)(real_x);
+            t->y1 = fh * (float)(real_y);
             t->x2 = t->x1 + fw;
             t->y2 = t->y1 + fh;
 
             DBG("Tile: %-10s %ux%u (%u, %u)", name, width, height, x, y);
-
             SDL_Surface *s = tex_get_surface(tex);
 
 	    point AT = {
-                pixel_size.width * x,
-                pixel_size.height * y
+                pixel_size.width * real_x,
+                pixel_size.height * real_y
             };
 
 	    point MAX = {
-                pixel_size.width * x,
-		pixel_size.height * y
+                pixel_size.width * real_x,
+		pixel_size.height * real_y
             };
 
 	    point MIN = {
-               (pixel_size.width * x) + pixel_size.width - 1,
-	       (pixel_size.height * y) + pixel_size.height - 1
+               (pixel_size.width * real_x) + pixel_size.width - 1,
+	       (pixel_size.height * real_y) + pixel_size.height - 1
             };
 
             int x1, y1;
@@ -198,8 +222,8 @@ void tile_load_arr (const char *tex_name,
 		for (x1=0; x1<pixel_size.width; x1++) {
 
 		    point at = {
-                        (pixel_size.width * x) + x1,
-			(pixel_size.height * y) + y1
+                        (pixel_size.width * real_x) + x1,
+			(pixel_size.height * real_y) + y1
                     };
 
 		    color p = getPixel(s, at.x, at.y);
@@ -241,13 +265,12 @@ void tile_load_arr (const char *tex_name,
         }
 
         x++;
-
-        if (x * width >= tex_get_width(tex)) {
+        if (x * width >= fake_width) {
             x = 0;
             y++;
         }
 
-        if (y * height > tex_get_height(tex)) {
+        if (y * height > fake_height) {
             if (name) {
                 ERR("overflow reading tile arr[%s]", name);
             } else {

@@ -1285,8 +1285,8 @@ void wid_map_preview_thumbnail (widp w)
  * Replace or place a tile.
  */
 widp wid_editor_level_map_thing_replace_template (widp w,
-                                                  double x,
-                                                  double y,
+                                                  Double x,
+                                                  Double y,
                                                   thingp t,
                                                   tpp tp,
                                                   tpp_data data,
@@ -1415,7 +1415,6 @@ static void wid_map_load_levels (wid_map_ctx *ctx)
     } }
 
     dirlist_free(&d);
-
     ramdisk_t *ramfile = ramdisk_get_data();
 
     while (ramfile->filename) {

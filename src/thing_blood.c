@@ -10,17 +10,17 @@
 
 static void level_place_spatter (levelp level, 
                                  thingp owner,
-                                 double x, 
-                                 double y,
-                                 double radius,
+                                 Double x, 
+                                 Double y,
+                                 Double radius,
                                  int amount,
                                  uint32_t nargs, ...)
 {
     va_list args;
 
     while (amount--) {
-        double px = gauss(x, radius);
-        double py = gauss(y, radius);
+        Double px = gauss(x, radius);
+        Double py = gauss(y, radius);
         va_start(args, nargs);
 
         (void) level_place_explosion_at(level, 
@@ -39,7 +39,7 @@ static void level_place_spatter (levelp level,
 
 void level_place_hit_success (levelp level, 
                               thingp owner,
-                              double x, double y)
+                              Double x, Double y)
 {
     level_place_spatter(level, 
                         owner,
@@ -52,7 +52,7 @@ void level_place_hit_success (levelp level,
 
 void level_place_hit_miss (levelp level, 
                           thingp owner,
-                          double x, double y)
+                          Double x, Double y)
 {
     level_place_spatter(level, 
                         owner,
@@ -65,7 +65,7 @@ void level_place_hit_miss (levelp level,
 
 void level_place_blood (levelp level, 
                         thingp owner,
-                        double x, double y)
+                        Double x, Double y)
 {
     level_place_spatter(level, 
                         owner,
@@ -78,7 +78,7 @@ void level_place_blood (levelp level,
 
 void level_place_flames (levelp level, 
                         thingp owner,
-                        double x, double y)
+                        Double x, Double y)
 {
     level_place_spatter(level, 
                         owner,
@@ -91,7 +91,7 @@ void level_place_flames (levelp level,
 
 void level_place_bubbles (levelp level, 
                         thingp owner,
-                        double x, double y)
+                        Double x, Double y)
 {
     level_place_spatter(level, 
                         owner,
@@ -104,7 +104,7 @@ void level_place_bubbles (levelp level,
 
 void level_place_blood_crit (levelp level, 
                              thingp owner,
-                             double x, double y)
+                             Double x, Double y)
 {
     level_place_spatter(level, 
                         owner,

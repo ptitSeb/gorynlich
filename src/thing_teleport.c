@@ -88,8 +88,8 @@ void thing_reached_teleport (thingp t, thingp teleport)
 
     poss = myrand() % poss;
 
-    double nx = tx[poss];
-    double ny = ty[poss];
+    Double nx = tx[poss];
+    Double ny = ty[poss];
 
     /*
      * Don't let lava spawn continually on top of itself.

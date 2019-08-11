@@ -47,7 +47,7 @@ void thing_stats_check_for_changes (thingp t)
         if (!thing_has_ability_double_shot(t)) {
             t->has_ability_double_shot = true;
             MSG_SERVER_SHOUT_AT(POPUP, t, 0, 0,
-                                "%%%%font=%s$%%%%fg=%s$double shot ability unlocked",
+                                "%%%%font=%s$%%%%fg=%s$Double shot ability unlocked",
                                 "vlarge", "green");
         }
         break;
@@ -85,7 +85,7 @@ void thing_stats_check_for_changes (thingp t)
         if (!thing_has_ability_double_speed_swing(t)) {
             t->has_ability_double_speed_swing = true;
             MSG_SERVER_SHOUT_AT(POPUP, t, 0, 0,
-                                "%%%%font=%s$%%%%fg=%s$double speed swing ability unlocked",
+                                "%%%%font=%s$%%%%fg=%s$Double speed swing ability unlocked",
                                 "vlarge", "green");
         }
         break;
@@ -101,7 +101,7 @@ void thing_stats_check_for_changes (thingp t)
         if (!thing_has_ability_double_damage_swing(t)) {
             t->has_ability_double_damage_swing = true;
             MSG_SERVER_SHOUT_AT(POPUP, t, 0, 0,
-                                "%%%%font=%s$%%%%fg=%s$double damage swing unlocked",
+                                "%%%%font=%s$%%%%fg=%s$Double damage swing unlocked",
                                 "vlarge", "green");
         }
         break;

@@ -268,7 +268,7 @@ static void term_core_fgbg (unsigned char fg, unsigned char bg)
         /*
          * Allow the default color to be 0, that of the terminal.
          */
-        term_core_fg(fg);
+      //  term_core_fg(fg);
         return;
     }
 
@@ -287,7 +287,7 @@ static inline void term_puts_fg (unsigned char a)
         ERR("overflow");
     }
 
-    fputs(data[a], stdout);
+    //fputs(data[a], stdout);
 }
 
 static inline void term_puts_fgbg (unsigned char fg, unsigned char bg)
@@ -315,7 +315,7 @@ static inline void term_puts_fgbg (unsigned char fg, unsigned char bg)
         /*
          * Allow the default color to be 0, that of the terminal.
          */
-        term_puts_fg(fg);
+     //   term_puts_fg(fg);
         return;
     }
 

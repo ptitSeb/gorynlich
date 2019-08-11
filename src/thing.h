@@ -27,9 +27,9 @@ void thing_map_sanity(void);
 void thing_sanity(thingp);
 void thing_map_dump(void);
 thingp thing_server_new(const char *name, 
-                        double x, double y,
-                        thing_statsp stats);
-void thing_server_init(thingp, double x, double y);
+                        Double x, Double y,
+                        thing_statsp stats)  FASTMATH;
+void thing_server_init(thingp, Double x, Double y)  FASTMATH;
 thingp thing_client_new(uint32_t, tpp);
 thingp thing_client_local_new(tpp tp);
 void thing_restarted(thingp t, levelp level);
@@ -73,10 +73,10 @@ uint8_t thing_z_depth(thingp);
 uint8_t thing_z_order(thingp);
 tree_rootp thing_tile_tiles(thingp);
 void thing_animate(thingp);
-uint8_t thing_hit_solid_obstacle(widp grid, thingp t, double nx, double ny);
-uint8_t thing_hit_any_obstacle(widp grid, thingp t, double nx, double ny);
+uint8_t thing_hit_solid_obstacle(widp grid, thingp t, Double nx, Double ny) FASTMATH;
+uint8_t thing_hit_any_obstacle(widp grid, thingp t, Double nx, Double ny) FASTMATH;
 uint8_t thing_server_hit_solid_obstacle(widp grid, 
-                                        thingp t, double nx, double ny);
+                                        thingp t, Double nx, Double ny) FASTMATH;
 void thing_set_is_light_source(thingp t, uint8_t val);
 uint8_t thing_is_light_source(thingp t);
 void thing_set_is_candle_light(thingp t, uint8_t val);
@@ -127,34 +127,34 @@ uint8_t thing_z_depth(thingp);
 uint8_t thing_z_order(thingp);
 int32_t thing_player_cost(thingp);
 int32_t thing_monst_cost(thingp);
-double thing_speed(thingp);
+Double thing_speed(thingp);
 tree_rootp thing_tiles(thingp);
 
 thing_tilep thing_current_tile(thingp t);
 void thing_place_timed(tpp t, 
-                       double x,
-                       double y,
+                       Double x,
+                       Double y,
                        uint32_t ms, 
                        uint32_t jitter,
-                       uint8_t server_side);
+                       uint8_t server_side) FASTMATH;
 void thing_place_and_destroy_timed(levelp,
                                    tpp t, 
                                    thingp owner,
-                                   double x,
-                                   double y,
+                                   Double x,
+                                   Double y,
                                    uint32_t ms, 
                                    uint32_t destroy_in, 
                                    uint32_t jitter,
                                    uint8_t server_side,
-                                   uint8_t is_epicenter);
+                                   uint8_t is_epicenter) FASTMATH;
 void thing_timer_destroy(thingp t, uint32_t destroy_in);
 void thing_timer_place_and_destroy_callback(void *context);
 void thing_timer_place_and_destroy_destroy_callback(void *context);
 void thing_timer_place_callback(void *context);
 void thing_timer_place_destroy_callback(void *context);
-void thing_server_wid_update(thingp t, double x, double y, uint8_t is_new);
-void thing_client_wid_update(thingp t, double x, double y, 
-                             uint8_t smooth, uint8_t is_new);
+void thing_server_wid_update(thingp t, Double x, Double y, uint8_t is_new) FASTMATH;
+void thing_client_wid_update(thingp t, Double x, Double y, 
+                             uint8_t smooth, uint8_t is_new) FASTMATH;
 void msg_server_shout_at_player(thingp t, const char *what);
 uint8_t thing_use(thingp t, uint32_t id);
 
@@ -171,15 +171,15 @@ int dmap_distance_between_points(int target_x, int target_y, int source_x, int s
 uint8_t thing_find_nexthop(thingp t, int32_t *x, int32_t *y);
 void dmap_process_init(void);
 void dmap_process_fini(void);
-void dmap_generate_map(double x, double y);
+void dmap_generate_map(Double x, Double y) FASTMATH;
 void dmap_generate_map_wander(levelp level);
 void dmap_generate(levelp level, int force);
 
 typedef struct {
     tpp tp;
     levelp level;
-    double x;
-    double y;
+    Double x;
+    Double y;
     uint16_t destroy_in;
 
     /*
@@ -284,8 +284,8 @@ enum {
 };
 
 void thing_client_move(thingp t,
-                       double x,
-                       double y,
+                       Double x,
+                       Double y,
                        const uint8_t up,
                        const uint8_t down,
                        const uint8_t left,
@@ -983,19 +983,19 @@ typedef struct thing_ {
     /*
      * Grid coordinates.
      */
-    double x;
-    double y;
+    Double x;
+    Double y;
 
     /*
      * Last anim frame position. To be able to detect moving things.
      */
-    double anim_x;
-    double anim_y;
+    Double anim_x;
+    Double anim_y;
 
     /*
      * How close for collision detection.
      */
-    double collision_radius;
+    Double collision_radius;
 
     /*
      * Map grid co-ordinates.
@@ -1007,19 +1007,19 @@ typedef struct thing_ {
      * Previous hop where we were. We use this to interpolate the real 
      * position on the server when moving.
      */
-    double last_x;
-    double last_y;
+    Double last_x;
+    Double last_y;
 
     /*
      * For moving
      */
-    double dx;
-    double dy;
+    Double dx;
+    Double dy;
 
     /*
      * Thing to be shown scaled on the client
      */
-    double scale;
+    Double scale;
 
     /*
      * Last co-ords sent to the client
@@ -1457,7 +1457,7 @@ static inline uint8_t thing_is_fire (thingp t)
     return (tp_is_fire(thing_tp(t)));
 }
 
-static inline double thing_collision_radius (thingp t)
+static inline FASTMATH Double thing_collision_radius (thingp t)
 {
     verify(t);
 
@@ -3400,15 +3400,15 @@ static inline int thing_has_ability_perma_rage (const thingp t)
 /*
  * thing.c
  */
-void thing_move(thingp t, double x, double y);
+void thing_move(thingp t, Double x, Double y) FASTMATH;
 
 void thing_move_set_dir(thingp t,
-                        double *x,
-                        double *y,
+                        Double *x,
+                        Double *y,
                         uint8_t up,
                         uint8_t down,
                         uint8_t left,
-                        uint8_t right);
+                        uint8_t right) FASTMATH;
 
 uint8_t thing_wid_is_inactive(widp w);
 uint8_t thing_wid_is_active(widp w);
@@ -3417,14 +3417,14 @@ uint8_t thing_wid_is_active(widp w);
  * thing_server.c
  */
 uint8_t thing_server_move(thingp t,
-                          double x,
-                          double y,
+                          Double x,
+                          Double y,
                           const uint8_t up,
                           const uint8_t down,
                           const uint8_t left,
                           const uint8_t right,
                           const uint8_t fire,
-                          const uint8_t magic);
+                          const uint8_t magic) FASTMATH;
 
 void thing_server_action(thingp t,
                          uint8_t action,
@@ -3452,7 +3452,7 @@ void thing_wield_next_weapon(thingp t);
  * thing_collision.c
  */
 void 
-thingp_get_interpolated_position(const thingp t, double *x, double *y);
+thingp_get_interpolated_position(const thingp t, Double *x, Double *y) FASTMATH;
 
 /*
  * thing_place.c
@@ -3464,8 +3464,8 @@ widp thing_place_behind_or_under(thingp t, tpp tp, itemp item);
 /*
  * thing_dir.c
  */
-void thing_dir(thingp t, double *dx, double *dy);
-int thing_angle_to_dir(double dx, double dy);
+void thing_dir(thingp t, Double *dx, Double *dy) FASTMATH;
+int thing_angle_to_dir(Double dx, Double dy) FASTMATH;
 
 /*
  * thing_torch.c
@@ -3504,7 +3504,7 @@ void thing_sheath(thingp t);
 void thing_swing(thingp t);
 void thing_wield(thingp t, tpp tp);
 void thing_weapon_sheath(thingp t);
-void thing_weapon_swing_offset(thingp t, double *dx, double *dy);
+void thing_weapon_swing_offset(thingp t, Double *dx, Double *dy) FASTMATH;
 thingp thing_weapon_carry_anim(thingp t);
 thingp thing_weapon_swing_anim(thingp t);
 void thing_set_weapon_placement(thingp t);
@@ -3527,20 +3527,20 @@ extern int level_explosion_flash_effect;
 
 void level_place_explosion_at(levelp level,
                               thingp owner,
-                              double ox, 
-                              double oy, 
-                              double x, 
-                              double y, 
+                              Double ox, 
+                              Double oy, 
+                              Double x, 
+                              Double y, 
                               uint8_t dist,
                               uint8_t is_epicenter,
                               const char *epicenter,
                               uint32_t nargs,
-                              va_list args);
+                              va_list args) FASTMATH;
 void level_place_explosion(levelp level, 
                            thingp owner,
                            tpp explodes_as,
-                           double ox, double oy,
-                           double x, double y);
+                           Double ox, Double oy,
+                           Double x, Double y) FASTMATH;
 void explosion_flood(levelp level, uint8_t x, uint8_t y);
 
 /*
@@ -3548,28 +3548,28 @@ void explosion_flood(levelp level, uint8_t x, uint8_t y);
  */
 void level_place_hit_success(levelp level, 
                          thingp owner,
-                         double x, double y);
+                         Double x, Double y) FASTMATH;
 void level_place_hit_miss(levelp level, 
                          thingp owner,
-                         double x, double y);
+                         Double x, Double y) FASTMATH;
 void level_place_blood(levelp level, 
                        thingp owner,
-                       double x, double y);
+                       Double x, Double y) FASTMATH;
 void level_place_flames(levelp level, 
                        thingp owner,
-                       double x, double y);
+                       Double x, Double y) FASTMATH;
 void level_place_bubbles(levelp level, 
                        thingp owner,
-                       double x, double y);
+                       Double x, Double y) FASTMATH;
 void level_place_blood_crit(levelp level, 
                             thingp owner,
-                            double x, double y);
+                            Double x, Double y) FASTMATH;
 /*
  * thing_bomb.c
  */
 thingp level_place_bomb(levelp level, 
                         thingp owner,
-                        double x, double y);
+                        Double x, Double y) FASTMATH;
 /*
  * thing_collision.c
  */
@@ -3593,7 +3593,7 @@ int32_t thing_stats_get_total_damage(thingp t);
 /*
  * thing_speed.c
  */
-double thing_stats_get_total_speed(thingp t);
+Double thing_stats_get_total_speed(thingp t) FASTMATH;
 
 /*
  * thing_damage.c
@@ -3605,8 +3605,8 @@ int32_t thing_stats_get_total_damage_minus_defense(thingp t,
 /*
  * thing_vision.c
  */
-double thing_stats_get_total_vision(thingp t, double vision);
-void level_place_light(levelp level, double x, double y);
+Double thing_stats_get_total_vision(thingp t, Double vision) FASTMATH;
+void level_place_light(levelp level, Double x, Double y) FASTMATH;
 
 /*
  * thing_health.c
@@ -3652,9 +3652,9 @@ void thing_reached_exit(thingp t, thingp exit);
  * Only a certain resolution of thing can be represented on the client.
  * Convert a floating point value to client rounded value.
  */
-static inline void thing_round (thingp t, double *x, double *y)
+static inline FASTMATH void thing_round (thingp t, Double *x, Double *y)
 {
-    const double scale = 256.0;
+    const Double scale = 256.0;
 
     *x = round(*x * scale) / scale;
     *y = round(*y * scale) / scale;
@@ -3670,7 +3670,7 @@ static inline void thing_real_to_map (thingp t, int *x, int *y)
     *y = (t->y + 0.9);
 }
 
-static inline void thing_real_to_fmap (thingp t, double *x, double *y)
+static inline FASTMATH void thing_real_to_fmap (thingp t, Double *x, Double *y)
 {
     *x = (t->x + 0.5);
     *y = (t->y + 0.9);
@@ -3678,7 +3678,7 @@ static inline void thing_real_to_fmap (thingp t, double *x, double *y)
     thing_round(t, x, y);
 }
 
-static inline void real_to_map (double ix, double iy, int *x, int *y)
+static inline FASTMATH void real_to_map (Double ix, Double iy, int *x, int *y)
 {
     *x = (ix + 0.5);
     *y = (iy + 0.9);

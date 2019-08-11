@@ -131,7 +131,7 @@ tree_root *dirlist (const char *dir,
 
         myfree(dir_and_file);
     }
-
+#ifndef NORAMDISK
     if (include_ramdisk) {
         extern ramdisk_t ramdisk_data[];
 
@@ -164,7 +164,7 @@ tree_root *dirlist (const char *dir,
             myfree(dir_and_file);
         }
     }
-
+#endif
     closedir(d);
 
     return (root);

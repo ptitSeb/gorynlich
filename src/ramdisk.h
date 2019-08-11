@@ -14,6 +14,8 @@ typedef struct ramdisk_t_ {
     int32_t len;
 } ramdisk_t;
 
+#define NORAMDISK
+#ifndef NORAMDISK
 void ramdisk_init(void);
-
+#endif
 extern ramdisk_t *ramdisk_get_data(void);

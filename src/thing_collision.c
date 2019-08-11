@@ -123,9 +123,9 @@ static void thing_possible_hit_do (thingp hitter)
             /*
              * If this target is closer, prefer it.
              */
-            double dist_best = DISTANCE(hitter->x, hitter->y,
+            Double dist_best = DISTANCE(hitter->x, hitter->y,
                                         best->target->x, best->target->y);
-            double dist_cand = DISTANCE(hitter->x, hitter->y,
+            Double dist_cand = DISTANCE(hitter->x, hitter->y,
                                         cand->target->x, cand->target->y);
 
             if (dist_cand < dist_best) {
@@ -156,8 +156,8 @@ static void thing_possible_hit_do (thingp hitter)
  * On the server, things move in jumps. Find the real position the client
  * will see so collisions look more accurate.
  */
-void 
-thingp_get_interpolated_position (const thingp t, double *x, double *y)
+void FASTMATH
+thingp_get_interpolated_position (const thingp t, Double *x, Double *y)
 {
     widp w = thing_wid(t);
 
@@ -169,9 +169,9 @@ thingp_get_interpolated_position (const thingp t, double *x, double *y)
         return;
     }
 
-    double wdx, wdy;
-    double dx = t->x - t->last_x;
-    double dy = t->y - t->last_y;
+    Double wdx, wdy;
+    Double dx = t->x - t->last_x;
+    Double dy = t->y - t->last_y;
 
     wid_get_move_interpolated_progress(thing_wid(t), &wdx, &wdy);
 
@@ -181,28 +181,28 @@ thingp_get_interpolated_position (const thingp t, double *x, double *y)
     thing_round(t, x, y);
 }
 
-static uint8_t things_overlap (const thingp A, 
-                               double nx,
-                               double ny,
+static FASTMATH uint8_t things_overlap (const thingp A, 
+                               Double nx,
+                               Double ny,
                                const thingp B)
 {
     static tilep wall;
-    static double collision_map_large_x1;
-    static double collision_map_large_x2;
-    static double collision_map_large_y1;
-    static double collision_map_large_y2;
-    static double collision_map_player_sized_x1;
-    static double collision_map_player_sized_x2;
-    static double collision_map_player_sized_y1;
-    static double collision_map_player_sized_y2;
+    static Double collision_map_large_x1;
+    static Double collision_map_large_x2;
+    static Double collision_map_large_y1;
+    static Double collision_map_large_y2;
+    static Double collision_map_player_sized_x1;
+    static Double collision_map_player_sized_x2;
+    static Double collision_map_player_sized_y1;
+    static Double collision_map_player_sized_y2;
 
     /*
      * Find out the position of the thing on the client. On the server we move 
      * in jumps, but on the server we want the collision to be more accurate
      * so we use the amount of time passed to interpolate the thing position.
      */
-    double Ax, Ay;
-    double Bx, By;
+    Double Ax, Ay;
+    Double Bx, By;
 
     /*
      * If -1, -1 then we are looking at the current position.
@@ -252,15 +252,15 @@ static uint8_t things_overlap (const thingp A,
         collision_map_player_sized_y2 = tile->py2;
     }
 
-    double Apx1;
-    double Apx2;
-    double Apy1;
-    double Apy2;
+    Double Apx1;
+    Double Apx2;
+    Double Apy1;
+    Double Apy2;
 
-    double Bpx1;
-    double Bpx2;
-    double Bpy1;
-    double Bpy2;
+    Double Bpx1;
+    Double Bpx2;
+    Double Bpy1;
+    Double Bpy2;
 
     widp Aw = thing_wid(A);
     widp Bw = thing_wid(B);
@@ -273,8 +273,8 @@ static uint8_t things_overlap (const thingp A,
         Apy1 = tileA->py1;
         Apy2 = tileA->py2;
 
-        double tile_width = (Apx2 - Apx1);
-        double tile_height = (Apy2 - Apy1);
+        Double tile_width = (Apx2 - Apx1);
+        Double tile_height = (Apy2 - Apy1);
 
         Apy1 -= tile_height / 3.0;
         Apx2 += tile_width / 3.0;
@@ -309,8 +309,8 @@ static uint8_t things_overlap (const thingp A,
         Bpy1 = tileB->py1;
         Bpy2 = tileB->py2;
 
-        double tile_width = (Bpx2 - Bpx1);
-        double tile_height = (Bpy2 - Bpy1);
+        Double tile_width = (Bpx2 - Bpx1);
+        Double tile_height = (Bpy2 - Bpy1);
 
         Bpy1 -= tile_height / 3.0;
         Bpx2 += tile_width / 3.0;
@@ -392,7 +392,7 @@ static uint8_t things_overlap (const thingp A,
                 By += ((Bw->first_tile->py1 + Bw->first_tile->py2) / 2.0);
             }
 
-            double dist = DISTANCE(Ax, Ay, Bx, By);
+            Double dist = DISTANCE(Ax, Ay, Bx, By);
             if (dist < max(thing_collision_radius(A), thing_collision_radius(B))) {
                 return (true);
             } else {
@@ -404,15 +404,15 @@ static uint8_t things_overlap (const thingp A,
     /*
      * Find the start of pixels in the tile.
      */
-    double Atlx = Ax + Apx1;
-    double Abrx = Ax + Apx2;
-    double Atly = Ay + Apy1;
-    double Abry = Ay + Apy2;
+    Double Atlx = Ax + Apx1;
+    Double Abrx = Ax + Apx2;
+    Double Atly = Ay + Apy1;
+    Double Abry = Ay + Apy2;
 
-    double Btlx = Bx + Bpx1;
-    double Bbrx = Bx + Bpx2;
-    double Btly = By + Bpy1;
-    double Bbry = By + Bpy2;
+    Double Btlx = Bx + Bpx1;
+    Double Bbrx = Bx + Bpx2;
+    Double Btly = By + Bpy1;
+    Double Bbry = By + Bpy2;
 
     /*
      * The rectangles don't overlap if one rectangle's minimum in some 
@@ -1057,7 +1057,7 @@ LOG("%d %d [%d] %s",x,y,i, thing_logname(it));
  *
  * No opening of doors in here or other actions. This is just a check.
  */
-uint8_t thing_hit_solid_obstacle (widp grid, thingp t, double nx, double ny)
+uint8_t thing_hit_solid_obstacle (widp grid, thingp t, Double nx, Double ny)
 {
     thingp me;
     widp wid_me;
@@ -1142,7 +1142,7 @@ uint8_t thing_hit_solid_obstacle (widp grid, thingp t, double nx, double ny)
                      * If the monst has a weapon do not walk into the player 
                      * like a bite attack.
                      */
-                    double dist = DISTANCE(me->x, me->y, it->x, it->y);
+                    Double dist = DISTANCE(me->x, me->y, it->x, it->y);
                     if (dist > 0.5) {
                         /*
                          * Get close, enough to hit but not too close.
@@ -1280,8 +1280,8 @@ uint8_t thing_hit_solid_obstacle (widp grid, thingp t, double nx, double ny)
                     }
                 }
 
-                double dist_now = DISTANCE(t->x, t->y, it->x, it->y);
-                double dist_then = DISTANCE(nx, ny, it->x, it->y);
+                Double dist_now = DISTANCE(t->x, t->y, it->x, it->y);
+                Double dist_then = DISTANCE(nx, ny, it->x, it->y);
 
                 /*
                  * No spiders stuck in their own web
@@ -1320,7 +1320,7 @@ uint8_t thing_hit_solid_obstacle (widp grid, thingp t, double nx, double ny)
  *
  * Is there anything other than floor here
  */
-uint8_t thing_hit_any_obstacle (widp grid, thingp t, double nx, double ny)
+uint8_t thing_hit_any_obstacle (widp grid, thingp t, Double nx, Double ny)
 {
     thingp it;
     thingp me;

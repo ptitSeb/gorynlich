@@ -650,7 +650,7 @@ int shop_inside (thingp t)
     return (false);
 }
 
-void shop_on_level (double x, double y)
+void shop_on_level (Double x, Double y)
 {
     MSG_SERVER_SHOUT_AT_ALL_PLAYERS(SOUND_GLOBAL, x, y, "cash_register");
     MSG_SERVER_SHOUT_AT_ALL_PLAYERS(INFO, 0, 0, "You hear the chime of a cash register");

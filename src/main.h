@@ -13,6 +13,39 @@
 #include <assert.h>
 #include "config.h"
 
+#ifdef __ARM_NEON__
+ #define NEON 1
+ #undef Double
+ #define Double float
+#endif
+
+#ifdef NEON
+ #include <arm_neon.h>
+#else
+ #error KO
+#endif
+
+#ifdef __GNUC__
+ #ifdef __arm__
+  #ifdef __ARM_PCS_VFP
+   //#warning Arm Hardfloat detected
+   #define FASTMATH
+  #else
+   #ifdef __ARM_FP
+    //#warning Arm SoftFP detected
+    #define FASTMATH __attribute__((pcs("aapcs-vfp")))
+   #else
+        //#warning Arm no FP detected
+        #define FASTMATH
+   #endif
+  #endif
+ #else
+  #define FASTMATH
+ #endif
+#else
+ #define FASTMATH
+#endif
+
 /*
  * Enhanced random number generator.
  */
@@ -264,21 +297,21 @@ void HOST_LOG(hostp, const char *fmt, ...)
 
 void MSG_SERVER_SHOUT_AT(uint32_t level,
                          thingp,
-                         double x,
-                         double y,
+                         Double x,
+                         Double y,
                          const char *fmt, ...)
                          __attribute__ ((format (printf, 5, 6)));
 
 void MSG_CLIENT_SHOUT_AT(uint32_t level,
                          uint32_t thing_id,
-                         double x,
-                         double y,
+                         Double x,
+                         Double y,
                          const char *fmt, ...)
                          __attribute__ ((format (printf, 5, 6)));
 
 void MSG_SERVER_SHOUT_AT_ALL_PLAYERS(uint32_t level,
-                                     double x,
-                                     double y,
+                                     Double x,
+                                     Double y,
                                      const char *fmt, ...)
                                      __attribute__ ((format (printf, 4, 5)));
 
@@ -346,20 +379,34 @@ char *dupstr_(const char *in, const char *what, const char *func,
 /*
  * point.c
  */
-typedef struct {
-    double x;
-    double y;
+#ifdef NEON
+typedef union {
+    float32x2_t f32;
+    struct {
+        Double x, y;
+    };
 } fpoint;
-
+typedef union {
+    int32x2_t i32;
+    struct {
+        int32_t x, y;
+    };
+} point;
+#else
+typedef struct {
+    Double x;
+    Double y;
+} fpoint;
 typedef struct {
     int32_t x;
     int32_t y;
 } point;
+#endif
 
 typedef struct {
-    double x;
-    double y;
-    double z;
+    Double x;
+    Double y;
+    Double z;
 } fpoint3d;
 
 typedef struct {
@@ -374,18 +421,23 @@ typedef struct {
 } size;
 
 typedef struct {
-    double width;
-    double height;
+    Double width;
+    Double height;
 } fsize;
 
 /*
  * main.c
  */
+#ifdef ENABLE_LOG
 extern FILE *LOG_STDOUT;
 extern FILE *LOG_STDERR;
 
 #define MY_STDOUT (LOG_STDOUT ? LOG_STDOUT : stdout)
 #define MY_STDERR (LOG_STDERR ? LOG_STDERR : stderr)
+#else
+#define MY_STDOUT stdout
+#define MY_STDERR stderr
+#endif
 
 extern char *EXEC_FULL_PATH_AND_NAME;
 extern char *EXEC_DIR;

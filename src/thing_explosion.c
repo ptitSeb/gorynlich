@@ -15,10 +15,10 @@ int level_explosion_flash_effect;
  */
 void level_place_explosion_at (levelp level,
                                thingp owner,
-                               double ox, 
-                               double oy, 
-                               double x, 
-                               double y, 
+                               Double ox, 
+                               Double oy, 
+                               Double x, 
+                               Double y, 
                                uint8_t dist,
                                uint8_t is_epicenter,
                                const char *epicenter,
@@ -56,7 +56,7 @@ void level_place_explosion_at (levelp level,
         return;
     }
 
-    double delay = DISTANCE(ox, oy, x, y) * 100;
+    Double delay = DISTANCE(ox, oy, x, y) * 100;
 
     /*
      * Make the delay on the server a lot smaller so we don't see things die 
@@ -86,7 +86,7 @@ void level_place_explosion_at (levelp level,
 
 }
 
-static double this_explosion[MAP_WIDTH][MAP_HEIGHT];
+static Double this_explosion[MAP_WIDTH][MAP_HEIGHT];
 static uint8_t this_explosion_x;
 static uint8_t this_explosion_y;
 static uint8_t this_explosion_radius;
@@ -113,7 +113,7 @@ void explosion_flood (levelp level, uint8_t x, uint8_t y)
         return;
     }
 
-    double distance = DISTANCE(x, y, this_explosion_x, this_explosion_y);
+    Double distance = DISTANCE(x, y, this_explosion_x, this_explosion_y);
 
     if (distance > this_explosion_radius) {
         return;
@@ -205,12 +205,12 @@ static void debug_explosion (levelp level, int ix, int iy)
  */
 static void level_place_explosion_ (levelp level, 
                                     thingp owner,
-                                    double ox, 
-                                    double oy,
-                                    double x, 
-                                    double y,
+                                    Double ox, 
+                                    Double oy,
+                                    Double x, 
+                                    Double y,
                                     int radius,
-                                    double density,
+                                    Double density,
                                     const char *epicenter,
                                     uint32_t nargs, ...)
 {
@@ -225,9 +225,9 @@ static void level_place_explosion_ (levelp level,
         map_find_door_at(level, x, y, 0) ||
         map_find_rock_at(level, x, y, 0)) {
 
-        double dx, dy;
-        double best_x, best_y;
-        double best_distance;
+        Double dx, dy;
+        Double best_x, best_y;
+        Double best_distance;
         int gotone = false;
 
         best_x = -1;
@@ -236,7 +236,7 @@ static void level_place_explosion_ (levelp level,
 
         for (dx = -0.5; dx <= 0.5; dx+=0.5) {
             for (dy = -0.5; dy <= 0.5; dy+=0.5) {
-                double tx, ty;
+                Double tx, ty;
 
                 tx = x + dx;
                 ty = y + dy;
@@ -261,7 +261,7 @@ static void level_place_explosion_ (levelp level,
                     continue;
                 }
 
-                double distance = DISTANCE(x, y, tx, ty);
+                Double distance = DISTANCE(x, y, tx, ty);
                 if (!gotone || (distance < best_distance)) {
                     best_distance = distance;
                     best_x = tx;
@@ -381,7 +381,7 @@ static void level_place_explosion_ (levelp level,
                 continue;
             }
 
-            double dx, dy;
+            Double dx, dy;
 
             if ((radius == 1) || (density == 1.0)) {
                 va_start(args, nargs);
@@ -399,8 +399,8 @@ static void level_place_explosion_ (levelp level,
             } else {
                 for (dx = -0.5; dx <= 0.5; dx += density) {
                     for (dy = -0.5; dy <= 0.5; dy += density) {
-                        double ex = ix + dx;
-                        double ey = iy + dy;
+                        Double ex = ix + dx;
+                        Double ey = iy + dy;
 
                         va_start(args, nargs);
                         (void) level_place_explosion_at(level, 
@@ -424,11 +424,11 @@ static void level_place_explosion_ (levelp level,
 void level_place_explosion (levelp level, 
                             thingp owner,
                             tpp tp,
-                            double ox, double oy,
-                            double x, double y)
+                            Double ox, Double oy,
+                            Double x, Double y)
 {
     const char *explodes_as = 0;
-    double explosion_radius = 1.0;
+    Double explosion_radius = 1.0;
     int id = 0;
 
     if (tp) {

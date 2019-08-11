@@ -25,10 +25,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "main.h"
 #include "tree.h"
-#include "time.h"
+#include "sys/time.h"
 
 #undef TREE_DEBUG_PRINT
 #undef TREE_DEBUG_PRINT_WALKS

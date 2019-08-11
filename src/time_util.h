@@ -13,7 +13,7 @@
 #include <mach/mach_time.h>
 #endif
 #include <unistd.h>
-
+#include <time.h>
 #include <sys/time.h>
 #include "sdl.h"
 
@@ -69,13 +69,21 @@ static inline uint32_t time_update_time_milli (void)
     extern uint8_t sdl_main_loop_running;
 
     if (unlikely(!sdl_main_loop_running || !sdl_init_video || HEADLESS)) {
+#if 1
+	struct timespec ts;
+
+	clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+
+    	uint32_t time_in_mill =
+            ((uint32_t)(ts.tv_sec) * 1000) + (ts.tv_nsec) / 1000000;
+#else
         struct timeval  tv;
 
         gettimeofday(&tv, NULL);
 
         uint32_t time_in_mill = 
                 ((uint32_t)(tv.tv_sec) * 1000) + (tv.tv_usec) / 1000;
-
+#endif
         if (!base_time_in_mill) {
             base_time_in_mill = time_in_mill;
         }
@@ -92,13 +100,22 @@ static inline uint32_t time_update_time_milli (void)
 
 static inline uint32_t time_get_time_milli (void)
 {
+#if 1
+    struct timespec ts;
+
+    clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+
+    uint32_t time_in_mill =
+            ((uint32_t)(ts.tv_sec) * 1000) + (ts.tv_nsec) / 1000000;
+
+#else
     struct timeval  tv;
 
     gettimeofday(&tv, NULL);
 
     uint32_t time_in_mill = 
             ((uint32_t)(tv.tv_sec) * 1000) + (tv.tv_usec) / 1000;
-
+#endif
     if (!base_time_in_mill) {
         base_time_in_mill = time_in_mill;
     }

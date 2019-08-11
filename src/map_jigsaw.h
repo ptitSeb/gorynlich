@@ -45,7 +45,11 @@
  * |xxxxxxxxx|
  * +---------+
  */
+#ifdef NEON
+#define JIGPIECE_MAX                    10000
+#else
 #define JIGPIECE_MAX                    20000
+#endif
 
 /*
  * A solvable maze, e.g.:

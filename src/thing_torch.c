@@ -39,7 +39,7 @@ void thing_torch_tick (thingp t)
      * Work out the torch light radius. Each torch lights 0.5 radius units.
      */
     float torch_light_radius = 
-        (double) thing_is_carrying_thing_count(t, tp_is_torch) / 2.0;
+        (Double) thing_is_carrying_thing_count(t, tp_is_torch) / 2.0;
 
     if (torch_light_radius > tp_get_light_radius(t->tp)) {
         torch_light_radius = tp_get_light_radius(t->tp);

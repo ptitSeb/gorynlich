@@ -12,8 +12,8 @@ int32_t thing_stats_get_total_damage_minus_defense (thingp t,
                                                     thingp hitter, 
                                                     int32_t damage)
 {
-    double d = damage;
-    double modifier = thing_stats_val_to_modifier(thing_stats_get_defense(t));
+    Double d = damage;
+    Double modifier = thing_stats_val_to_modifier(thing_stats_get_defense(t));
 
     tpp helmet = thing_helmet(t);
     if (helmet) {

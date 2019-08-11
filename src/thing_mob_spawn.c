@@ -32,8 +32,8 @@ uint8_t thing_mob_spawn (thingp t)
     uint32_t tries = 10;
 
     while (tries-- > 0) {
-        double x;
-        double y;
+        Double x;
+        Double y;
         uint32_t r = myrand() % 100;
 
         thing_real_to_fmap(t, &x, &y);
@@ -212,8 +212,8 @@ thingp thing_mob_spawn_on_death (thingp t)
     uint8_t first = 1;
 
     while (tries-- > 0) {
-        double x;
-        double y;
+        Double x;
+        Double y;
         uint32_t r = myrand() % 100;
 
         thing_real_to_fmap(t, &x, &y);

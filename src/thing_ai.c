@@ -713,6 +713,8 @@ static void *dmap_thread2_func (void *context)
         }
 
         pthread_mutex_unlock(&dmap_thread2_mutex);
+
+    //SEB: Added delay, but seems useless:    SDL_Delay(100);
     }
 
     return (0);
@@ -961,7 +963,7 @@ static uint8_t thing_dmap_try_nexthop (thingp t,
 
 static int thing_chase_closest_player (thingp t, int32_t *nexthop_x, int32_t *nexthop_y)
 {
-    double distance = 9999;
+    Double distance = 9999;
     thingp best = 0;
     thingp thing_it;
 
@@ -1013,7 +1015,7 @@ static int thing_chase_closest_player (thingp t, int32_t *nexthop_x, int32_t *ne
 
 static int thing_run_from (thingp t, int32_t *nexthop_x, int32_t *nexthop_y, tpp tp)
 {
-    double distance = 9999;
+    Double distance = 9999;
     thingp best = 0;
     thingp thing_it;
 
@@ -1149,8 +1151,8 @@ uint8_t thing_find_nexthop (thingp t, int32_t *nexthop_x, int32_t *nexthop_y)
             return (true);
         }
 
-        double tx = t->x;
-        double ty = t->y;
+        Double tx = t->x;
+        Double ty = t->y;
 
         if (thing_wander_in_straight_lines(t, nexthop_x, nexthop_y)) {
             t->dx = *nexthop_x - tx;

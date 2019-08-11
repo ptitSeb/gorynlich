@@ -17,8 +17,8 @@
  * This is movement on the client of the player initiated by the player.
  */
 void thing_client_move (thingp t,
-                        double x,
-                        double y,
+                        Double x,
+                        Double y,
                         const uint8_t up,
                         const uint8_t down,
                         const uint8_t left,
@@ -93,11 +93,11 @@ void thing_client_move (thingp t,
 }
 
 static void thing_client_wid_move (thingp t, 
-                                   double x, 
-                                   double y, 
+                                   Double x, 
+                                   Double y, 
                                    uint8_t smooth)
 {
-    double dist = DISTANCE(t->x, t->y, x, y);
+    Double dist = DISTANCE(t->x, t->y, x, y);
 
     if (smooth) {
         if (dist == 0.0) {
@@ -115,13 +115,13 @@ static void thing_client_wid_move (thingp t,
     fpoint tl = { x, y };
     fpoint br = { x, y };
 
-    double base_tile_width =
-            ((1.0f / ((double)TILES_SCREEN_WIDTH)) *
-                (double)global_config.video_gl_width);
+    Double base_tile_width =
+            ((1.0f / ((Double)TILES_SCREEN_WIDTH)) *
+                (Double)global_config.video_gl_width);
 
-    double base_tile_height =
-            ((1.0f / ((double)TILES_SCREEN_HEIGHT)) *
-                (double)global_config.video_gl_height);
+    Double base_tile_height =
+            ((1.0f / ((Double)TILES_SCREEN_HEIGHT)) *
+                (Double)global_config.video_gl_height);
 
     if (!t->wid) {
         /*
@@ -132,10 +132,10 @@ static void thing_client_wid_move (thingp t,
     }
 
     tilep tile = wid_get_tile(t->wid);
-    double tw = tile_get_width(tile);
-    double th = tile_get_height(tile);
-    double scale_x = tw / TILE_WIDTH; 
-    double scale_y = th / TILE_HEIGHT; 
+    Double tw = tile_get_width(tile);
+    Double th = tile_get_height(tile);
+    Double scale_x = tw / TILE_WIDTH; 
+    Double scale_y = th / TILE_HEIGHT; 
 
     if (scale_x > 1) {
         base_tile_width *= scale_x;
@@ -163,21 +163,21 @@ static void thing_client_wid_move (thingp t,
      * stretch the tile so it overlaps so the inner 24x24 if seamless.
      */
 #if 0
-    double tile_width = ((br.x - tl.x) / 
-                         (double)TILE_PIX_WIDTH) * 
-                            (double)TILE_PIX_WITH_SHADOW_WIDTH;
+    Double tile_width = ((br.x - tl.x) / 
+                         (Double)TILE_PIX_WIDTH) * 
+                            (Double)TILE_PIX_WITH_SHADOW_WIDTH;
 
-    double tile_height = ((br.y - tl.y) / 
-                         (double)TILE_PIX_HEIGHT) * 
-                            (double)TILE_PIX_WITH_SHADOW_HEIGHT;
-    double tile_width = (br.x - tl.x);
-    double tile_height = (br.y - tl.y);
+    Double tile_height = ((br.y - tl.y) / 
+                         (Double)TILE_PIX_HEIGHT) * 
+                            (Double)TILE_PIX_WITH_SHADOW_HEIGHT;
+    Double tile_width = (br.x - tl.x);
+    Double tile_height = (br.y - tl.y);
 
     tile_width *= 0.50;
     tile_height *= 0.50;
 #endif
-    double tile_width = (br.x - tl.x);
-    double tile_height = (br.y - tl.y);
+    Double tile_width = (br.x - tl.x);
+    Double tile_height = (br.y - tl.y);
 
     if (thing_is_wall(t) || thing_is_door(t)) {
         tl.y -= tile_height / 3.0;
@@ -217,8 +217,8 @@ static void thing_client_wid_move (thingp t,
     }
 
     if (smooth) {
-        double time_step = dist;
-        double speed = thing_speed(t);
+        Double time_step = dist;
+        Double speed = thing_speed(t);
 
         /*
          * If a weapon is being carried, it has no speed. Move at the same 
@@ -237,7 +237,7 @@ static void thing_client_wid_move (thingp t,
                 thing_logname(t), dist);
         }
 
-        double ms = (5000.0 / speed) / (1.0 / time_step);
+        Double ms = (5000.0 / speed) / (1.0 / time_step);
 //CON("move speed %f", speed);
 
         if (t->is_jumping) {
@@ -272,7 +272,7 @@ static void thing_client_wid_move (thingp t,
 }
 
 void thing_client_wid_update (thingp t, 
-                              double x, double y, 
+                              Double x, Double y, 
                               uint8_t smooth,
                               uint8_t is_new)
 {
@@ -297,8 +297,8 @@ void thing_client_wid_update (thingp t,
      */
     thingp weapon_swing_anim = thing_weapon_swing_anim(t);
     if (weapon_swing_anim) {
-        double dx = 0;
-        double dy = 0;
+        Double dx = 0;
+        Double dy = 0;
 
         weapon_swing_anim->dir = t->dir;
         thing_weapon_swing_offset(t, &dx, &dy);

@@ -15,11 +15,13 @@ void *myzalloc_ (uint32_t size,
                  const char *func,
                  const uint32_t line)
 {
-    void *ptr = calloc(1, size);
+    void *ptr = malloc(size);
 
     if (!ptr) {
-        DIE("No memory, %s:%s():%u", file, func, line);
+        DIE("No memory(%u), %s:%s():%u", size, file, func, line);
     }
+
+    memset(ptr, 0, size);
 
 #ifdef ENABLE_PTRCHECK
     ptrcheck_alloc(ptr, what, size, file, func, line);

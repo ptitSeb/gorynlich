@@ -79,12 +79,12 @@ void thing_server_magic_fire (thingp t)
      */
     thing_weapon_check_for_damage_on_firing(t, weapon);
 
-    double dx, dy;
+    Double dx, dy;
 
     /*
      * Any smaller than this and diagonal shots collide with adjoining walls.
      */
-    double dist_from_player = 0.7;
+    Double dist_from_player = 0.7;
 
     /*
      * Try current direction.
@@ -132,8 +132,8 @@ void thing_server_magic_fire (thingp t)
      * magic from the player position plus the initial delta so it looks like 
      * it comes from outside of the body.
      */
-    double x = t->x;
-    double y = t->y;
+    Double x = t->x;
+    Double y = t->y;
 
     x += dx;
     y += dy;
@@ -164,7 +164,7 @@ void thing_server_magic_fire (thingp t)
      */
     thing_set_owner(p, t);
 
-    double scale = 0.02 * (double) t->magic_powerup;
+    Double scale = 0.02 * (Double) t->magic_powerup;
     p->scale = scale;
 
     p->damage = t->magic_powerup * 2;
@@ -192,8 +192,8 @@ void thing_server_magic_fire (thingp t)
         return;
     }
 
-    double fnexthop_x = p->x + p->dx;
-    double fnexthop_y = p->y + p->dy;
+    Double fnexthop_x = p->x + p->dx;
+    Double fnexthop_y = p->y + p->dy;
 
     thing_server_move(p,
                       fnexthop_x,
@@ -260,7 +260,7 @@ void thing_set_magic_anim (thingp t, thingp magic_anim)
         /*
          * Scale up weapons so they look the same size as the carryer.
          */
-        double scale = tp_get_scale(t->tp);
+        Double scale = tp_get_scale(t->tp);
         if (scale != 1.0) {
             wid_scaling_blit_to_pct_in(magic_anim->wid, scale, scale, 500, 9999999);
         }
@@ -390,7 +390,7 @@ void thing_wield_magic (thingp t, tpp magic)
 
     child->dir = t->dir;
 
-    child->scale = ((double)t->magic_powerup) * 0.02;
+    child->scale = ((Double)t->magic_powerup) * 0.02;
 
     /*
      * Attach to the thing.

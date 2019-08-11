@@ -18,8 +18,8 @@ extern void wid_game_map_server_item_update(levelp);
 
 extern widp
 wid_game_map_server_replace_tile(widp, 
-                                 double x, 
-                                 double y,
+                                 Double x, 
+                                 Double y,
                                  thingp, 
                                  tpp,
                                  tpp_data,

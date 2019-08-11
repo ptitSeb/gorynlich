@@ -27,10 +27,11 @@
 #include "file.h"
 #include "string.h"
 
+#define NORAMDISK
+
 #include "ramdisk_data.c"
 
 extern ramdisk_t ramdisk_data[];
-
 unsigned char *ramdisk_load (const char *filename, int32_t *outlen)
 {
     ramdisk_t *ramfile = ramdisk_data;
@@ -45,8 +46,14 @@ unsigned char *ramdisk_load (const char *filename, int32_t *outlen)
      */
     if (file_exists(filename)) {
         if (strstr(filename, "data/")) {
+#ifdef NORAMDISK
+            if (1)
+#else
             if (file_exists_and_is_newer_than(filename,
-                                              EXEC_FULL_PATH_AND_NAME)) {
+                                              EXEC_FULL_PATH_AND_NAME)) 
+#endif
+            {
+
                 out = file_read_if_exists(filename, outlen);
                 if (out) {
                     DBG("Locdisk %s (newer than exec)", filename);
@@ -54,6 +61,7 @@ unsigned char *ramdisk_load (const char *filename, int32_t *outlen)
                 }
             }
 
+#ifndef NORAMDISK
             if (file_exists_and_is_newer_than(filename, ".o/ramdisk_data.o")) {
                 out = file_read_if_exists(filename, outlen);
                 if (out) {
@@ -69,6 +77,7 @@ unsigned char *ramdisk_load (const char *filename, int32_t *outlen)
                     return (out);
                 }
             }
+#endif
         } else {
             out = file_read_if_exists(filename, outlen);
             if (out) {
@@ -77,13 +86,17 @@ unsigned char *ramdisk_load (const char *filename, int32_t *outlen)
             }
         }
     }
-
     if (EXEC_DIR) {
         alt_filename = strprepend(filename, EXEC_DIR);
 
         if (file_exists(alt_filename)) {
+#ifdef NORAMDISK
+            if (1)
+#else
             if (file_exists_and_is_newer_than(alt_filename,
-                                              EXEC_FULL_PATH_AND_NAME)) {
+                                              EXEC_FULL_PATH_AND_NAME)) 
+#endif
+                {
                 out = file_read_if_exists(alt_filename, outlen);
                 if (out) {
                     DBG("Locdisk %s", filename);
@@ -93,6 +106,7 @@ unsigned char *ramdisk_load (const char *filename, int32_t *outlen)
                 }
             }
 
+#ifndef NORAMDISK
             if (file_exists_and_is_newer_than(alt_filename,
                                             ".o/ramdisk_data.o")) {
                 out = file_read_if_exists(alt_filename, outlen);
@@ -114,9 +128,10 @@ unsigned char *ramdisk_load (const char *filename, int32_t *outlen)
                     return (out);
                 }
             }
+#endif
         }
     }
-
+#ifndef NORAMDISK
     while (ramfile->filename) {
         if (strcmp(ramfile->filename, filename)) {
             ramfile++;
@@ -205,7 +220,7 @@ unsigned char *ramdisk_load (const char *filename, int32_t *outlen)
 
         return (out);
     }
-
+#endif
     /*
      * Fallback to the disk.
      */
@@ -262,10 +277,8 @@ unsigned char *ramdisk_load (const char *filename, int32_t *outlen)
     if (alt_filename) {
         myfree(alt_filename);
     }
-
     return (0);
 }
-
 ramdisk_t *ramdisk_get_data (void)
 {
     return (ramdisk_data);

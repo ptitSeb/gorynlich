@@ -1,0 +1,1 @@
+RAMDISK_OBJ=.o/ramdisk_1.o .o/ramdisk_2.o .o/ramdisk_3.o .o/ramdisk_4.o .o/ramdisk_5.o .o/ramdisk_6.o .o/ramdisk_7.o .o/ramdisk_8.o .o/ramdisk_9.o 

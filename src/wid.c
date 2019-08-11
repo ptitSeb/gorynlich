@@ -387,16 +387,16 @@ double wid_get_cy (widp w)
     return (cy);
 }
 
-double wid_get_tl_x (widp w)
+Double wid_get_tl_x (widp w)
 {
-    double cx = (w->tree.tl.x + w->tree.br.x) / 2.0;
+    Double cx = (w->tree.tl.x + w->tree.br.x) / 2.0;
 
     return (cx - ((cx - w->tree.tl.x) * wid_get_scaling_w(w)));
 }
 
-double wid_get_tl_y (widp w)
+Double wid_get_tl_y (widp w)
 {
-    double cy = (w->tree.tl.y + w->tree.br.y) / 2.0;
+    Double cy = (w->tree.tl.y + w->tree.br.y) / 2.0;
 
     return (cy - ((cy - w->tree.tl.y) * wid_get_scaling_h(w)));
 }
@@ -1480,7 +1480,7 @@ double wid_get_height (widp w)
     return (wid_get_br_y(w) - wid_get_tl_y(w));
 }
 
-void wid_get_mxy (widp w, double *x, double *y)
+void wid_get_mxy (widp w, Double *x, Double *y)
 {
     *x = (wid_get_br_x(w) + wid_get_tl_x(w)) / 2.0;
     *y = (wid_get_br_y(w) + wid_get_tl_y(w)) / 2.0;
@@ -3238,15 +3238,16 @@ static void wid_destroy_delay (widp *wp, int32_t delay)
         wid_get_abs_coords(w, &tlx, &tly, &brx, &bry);
     }
 
-    if (w->on_destroy_begin) {
-        (w->on_destroy_begin)(w);
-    }
-
     /*
      * Make sure it stops ticking right now as client pointers this widget 
      * might use in the ticker may no longer be valid.
      */
     wid_tree5_ticking_wids_remove(w);
+
+    if (w->on_destroy_begin) {
+        (w->on_destroy_begin)(w);
+    }
+
 }
 
 void wid_destroy (widp *wp)
@@ -7558,16 +7559,16 @@ void wid_get_abs (widp w,
 }
 
 void wid_get_pct (widp w,
-                  double *px,
-                  double *py)
+                  Double *px,
+                  Double *py)
 {
     int32_t x;
     int32_t y;
 
     wid_get_abs(w, &x, &y);
 
-    *px = (double)x / (double)global_config.video_gl_width;
-    *py = (double)y / (double)global_config.video_gl_height;
+    *px = (Double)x / (Double)global_config.video_gl_width;
+    *py = (Double)y / (Double)global_config.video_gl_height;
 }
 
 /*
@@ -8410,7 +8411,7 @@ static void wid_lighting_calculate (widp w,
                                     const int light_index)
 {
     wid_light *light = &wid_lights[light_index];
-    double light_radius = light->strength;
+    Double light_radius = light->strength;
 
     int16_t maxx;
     int16_t minx;
@@ -8423,8 +8424,8 @@ static void wid_lighting_calculate (widp w,
         return;
     }
 
-    double visible_width = light_radius + 3;
-    double visible_height = light_radius + 3;
+    Double visible_width = light_radius + 3;
+    Double visible_height = light_radius + 3;
 
     light_radius *= wid_get_width(light_wid);
     light->strength *= wid_get_width(light_wid);
@@ -8501,7 +8502,7 @@ static void wid_lighting_render (widp w,
 {
     wid_light *light = &wid_lights[light_index];
     fpoint light_pos = light->at;
-    double light_radius = light->strength;
+    Double light_radius = light->strength;
 
     /*
      * No need for soft shadows in small lights
@@ -8523,8 +8524,8 @@ static void wid_lighting_render (widp w,
         return;
     }
 
-    double visible_width = light_radius + 3;
-    double visible_height = light_radius + 3;
+    Double visible_width = light_radius + 3;
+    Double visible_height = light_radius + 3;
 
     uint16_t max_light_rays = light->max_light_rays;
 
@@ -8572,8 +8573,8 @@ static void wid_lighting_render (widp w,
     blit_init();
 
     {
-        double r = 0;
-        double dr = RAD_360 / (double)max_light_rays;
+        Double r = 0;
+        Double dr = RAD_360 / (double)max_light_rays;
         int i;
 
         /*
@@ -8589,10 +8590,10 @@ static void wid_lighting_render (widp w,
 
             p1_len *= len_bright;
 
-            double cosr = fcos(r);
-            double sinr = fsin(r);
-            double p1x = light_pos.x + cosr * p1_len;
-            double p1y = light_pos.y + sinr * p1_len;
+            Double cosr = fcos(r);
+            Double sinr = fsin(r);
+            Double p1x = light_pos.x + cosr * p1_len;
+            Double p1y = light_pos.y + sinr * p1_len;
 
             push_point(p1x, p1y, red, green, blue, len_bright * alpha);
         }
@@ -8602,17 +8603,17 @@ static void wid_lighting_render (widp w,
          */
         r = 0;
         i = 0; {
-            double p1_len = ray_depth[i][light_level];
+            Double p1_len = ray_depth[i][light_level];
             if (p1_len == 0) {
                 p1_len = light_radius;
             }
 
             p1_len *= len_bright;
 
-            double cosr = fcos(r);
-            double sinr = fsin(r);
-            double p1x = light_pos.x + cosr * p1_len;
-            double p1y = light_pos.y + sinr * p1_len;
+            Double cosr = fcos(r);
+            Double sinr = fsin(r);
+            Double p1x = light_pos.x + cosr * p1_len;
+            Double p1y = light_pos.y + sinr * p1_len;
 
             push_point(p1x, p1y, red, green, blue, len_bright * alpha);
         }
@@ -8629,8 +8630,8 @@ static void wid_lighting_render (widp w,
     blit_init();
 
     {
-        double r = 0;
-        double dr = RAD_360 / (double)max_light_rays;
+        Double r = 0;
+        Double dr = RAD_360 / (Double)max_light_rays;
         int i;
 
         /*
@@ -8646,14 +8647,14 @@ static void wid_lighting_render (widp w,
             p3_len = p1_len;
             p1_len *= len_bright;
 
-            double cosr = fcos(r);
-            double sinr = fsin(r);
+            Double cosr = fcos(r);
+            Double sinr = fsin(r);
 
-            double p1x = light_pos.x + cosr * p1_len;
-            double p1y = light_pos.y + sinr * p1_len;
+            Double p1x = light_pos.x + cosr * p1_len;
+            Double p1y = light_pos.y + sinr * p1_len;
 
-            double p3x = light_pos.x + cosr * p3_len;
-            double p3y = light_pos.y + sinr * p3_len;
+            Double p3x = light_pos.x + cosr * p3_len;
+            Double p3y = light_pos.y + sinr * p3_len;
 
             push_point(p1x, p1y, red, green, blue, len_bright * alpha);
             push_point(p3x, p3y, red, green, blue, len_bright * alpha * 0.35);
@@ -8664,8 +8665,8 @@ static void wid_lighting_render (widp w,
          */
         r = 0;
         i = 0; {
-            double p1_len = ray_depth[i][light_level];
-            double p3_len;
+            Double p1_len = ray_depth[i][light_level];
+            Double p3_len;
             if (p1_len == 0) {
                 p1_len = light_radius;
             }
@@ -8673,14 +8674,14 @@ static void wid_lighting_render (widp w,
             p3_len = p1_len;
             p1_len *= len_bright;
 
-            double cosr = fcos(r);
-            double sinr = fsin(r);
+            Double cosr = fcos(r);
+            Double sinr = fsin(r);
 
-            double p1x = light_pos.x + cosr * p1_len;
-            double p1y = light_pos.y + sinr * p1_len;
+            Double p1x = light_pos.x + cosr * p1_len;
+            Double p1y = light_pos.y + sinr * p1_len;
 
-            double p3x = light_pos.x + cosr * p3_len;
-            double p3y = light_pos.y + sinr * p3_len;
+            Double p3x = light_pos.x + cosr * p3_len;
+            Double p3y = light_pos.y + sinr * p3_len;
 
             push_point(p1x, p1y, red, green, blue, len_bright * alpha);
             push_point(p3x, p3y, red, green, blue, len_bright * alpha * 0.35);
@@ -8703,8 +8704,8 @@ static void wid_lighting_render (widp w,
     blit_init();
 
     {
-        double r = 0;
-        double dr = RAD_360 / (double)max_light_rays;
+        Double r = 0;
+        Double dr = RAD_360 / (Double)max_light_rays;
         int i;
 
         if (!light->fuzz || !(myrand() % MAP_LIGHT_CANDLELIGHT_FLICKER_RATE)) {
@@ -8716,28 +8717,28 @@ static void wid_lighting_render (widp w,
             }
         }
 
-        double fuzz = light->fuzz;
+        Double fuzz = light->fuzz;
 
         /*
          * Walk the light rays in a circle.
          */
         for (i = 0; i < max_light_rays; i++, r += dr) {
-            double p1_len = ray_depth[i][light_level];
+            Double p1_len = ray_depth[i][light_level];
 
             if (p1_len == 0) {
                 p1_len = light_radius;
             }
 
-            double p3_len = p1_len + fuzz;
+            Double p3_len = p1_len + fuzz;
 
-            double cosr = fcos(r);
-            double sinr = fsin(r);
+            Double cosr = fcos(r);
+            Double sinr = fsin(r);
 
-            double p1x = light_pos.x + cosr * p1_len;
-            double p1y = light_pos.y + sinr * p1_len;
+            Double p1x = light_pos.x + cosr * p1_len;
+            Double p1y = light_pos.y + sinr * p1_len;
 
-            double p3x = light_pos.x + cosr * p3_len;
-            double p3y = light_pos.y + sinr * p3_len;
+            Double p3x = light_pos.x + cosr * p3_len;
+            Double p3y = light_pos.y + sinr * p3_len;
 
             push_point(p1x, p1y, red, green, blue, len_bright * alpha * 0.35);
             push_point(p3x, p3y, red, green, blue, 0);
@@ -8748,22 +8749,22 @@ static void wid_lighting_render (widp w,
          */
         r = 0;
         i = 0; {
-            double p1_len = ray_depth[i][light_level];
+            Double p1_len = ray_depth[i][light_level];
 
             if (p1_len == 0) {
                 p1_len = light_radius;
             }
 
-            double p3_len = p1_len + fuzz;
+            Double p3_len = p1_len + fuzz;
 
-            double cosr = fcos(r);
-            double sinr = fsin(r);
+            Double cosr = fcos(r);
+            Double sinr = fsin(r);
 
-            double p1x = light_pos.x + cosr * p1_len;
-            double p1y = light_pos.y + sinr * p1_len;
+            Double p1x = light_pos.x + cosr * p1_len;
+            Double p1y = light_pos.y + sinr * p1_len;
 
-            double p3x = light_pos.x + cosr * p3_len;
-            double p3y = light_pos.y + sinr * p3_len;
+            Double p3x = light_pos.x + cosr * p3_len;
+            Double p3y = light_pos.y + sinr * p3_len;
 
             push_point(p1x, p1y, red, green, blue, len_bright * alpha * 0.35);
             push_point(p3x, p3y, red, green, blue, 0);
@@ -9135,8 +9136,8 @@ static void wid_display (widp w,
         /*
          * Fit texture to the window size.
          */
-        texuv.width *= ((double)(br.x - tl.x)) / ((double)tex_get_width(tex));
-        texuv.height *= ((double)(br.y - tl.y)) / ((double)tex_get_height(tex));
+        texuv.width *= ((Double)(br.x - tl.x)) / ((Double)tex_get_width(tex));
+        texuv.height *= ((Double)(br.y - tl.y)) / ((Double)tex_get_height(tex));
 
         glBindTexture(GL_TEXTURE_2D, tex_get_gl_binding(tex));
     } else {
@@ -9192,7 +9193,7 @@ static void wid_display (widp w,
 
             glcolor(col_blit_outline);
 
-            double scale = w->blit_outline_val;
+            Double scale = w->blit_outline_val;
             fpoint new_tl;
             fpoint new_br;
 
@@ -9213,7 +9214,7 @@ static void wid_display (widp w,
         if (w->blit_scaled_w || w->blit_scaled_h ||
             w->blit_scaling_w || w->blit_scaling_h) {
         
-            double scale = wid_get_blit_scaling_w(w);
+            Double scale = wid_get_blit_scaling_w(w);
             fpoint new_tl;
             fpoint new_br;
 
@@ -9236,8 +9237,8 @@ static void wid_display (widp w,
          */
 
         if (w->blit_center) {
-            double twidth = br.x - tl.x;
-            double theight = br.y - tl.y;
+            Double twidth = br.x - tl.x;
+            Double theight = br.y - tl.y;
 
             /*
             * Use the first tile else things like torches jump around.
@@ -9247,10 +9248,10 @@ static void wid_display (widp w,
             /*
             * Work out the center of the tile and how far from center it is.
             */
-            double mpx = (ftile->px2 + ftile->px1) / 2.0;
-            double mpy = (ftile->py2 + ftile->py1) / 2.0;
-            double dx = (0.5 - mpx) * twidth;
-            double dy = (0.5 - mpy) * theight;
+            Double mpx = (ftile->px2 + ftile->px1) / 2.0;
+            Double mpy = (ftile->py2 + ftile->py1) / 2.0;
+            Double dx = (0.5 - mpx) * twidth;
+            Double dy = (0.5 - mpy) * theight;
 
             fpoint a, b;
             a.x = tl.x+ dx;
@@ -9276,8 +9277,8 @@ static void wid_display (widp w,
 
     if (text && text[0]) {
         fontp font = wid_get_font(w);
-        double scaling = wid_get_text_scaling(w);
-        double advance = wid_get_text_advance(w);
+        Double scaling = wid_get_text_scaling(w);
+        Double advance = wid_get_text_advance(w);
         uint8_t fixed_width = wid_get_text_fixed_width(w);
 
         int32_t x, y;
@@ -9360,7 +9361,7 @@ static void wid_display (widp w,
                 ERR("unhandled text outline case");
             }
 
-            double dx;
+            Double dx;
 
             col_text_outline.a = (int)(wid_get_fade_amount(w) * 255.0);
 
@@ -9540,8 +9541,8 @@ static void wid_display (widp w,
 
             uint32_t tw = global_config.video_pix_width;
             uint32_t th = global_config.video_pix_height;
-            double window_w = tw;
-            double window_h = th;
+            Double window_w = tw;
+            Double window_h = th;
 
             /*
              * Stretch the shadow so when the screen shakes the borders are 
@@ -10348,7 +10349,7 @@ void wid_move_to_pct_in (widp w, double x, double y, uint32_t ms)
  * Return numbers in the 0 to 1 range indicating how far the move has 
  * progressed from start to end.
  */
-void wid_get_move_interpolated_progress (widp w, double *dx, double *dy)
+void wid_get_move_interpolated_progress (widp w, Double *dx, Double *dy)
 {
     fast_verify(w);
 
@@ -10358,14 +10359,14 @@ void wid_get_move_interpolated_progress (widp w, double *dx, double *dy)
         return;
     }
 
-    double x = wid_get_tl_x(w);
-    double y = wid_get_tl_y(w);
+    Double x = wid_get_tl_x(w);
+    Double y = wid_get_tl_y(w);
       
     x -= w->moving_start.x;
     y -= w->moving_start.y;
 
-    double wx = (double)(w->moving_end.x - w->moving_start.x);
-    double wy = (double)(w->moving_end.y - w->moving_start.y);
+    Double wx = (Double)(w->moving_end.x - w->moving_start.x);
+    Double wy = (Double)(w->moving_end.y - w->moving_start.y);
 
     if (wx == 0.0) {
         *dx = x;

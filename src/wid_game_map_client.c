@@ -243,8 +243,8 @@ uint8_t wid_game_map_client_player_move (void)
             left  = state[SDLK_LEFT] ? 1 : 0;
             up    = state[SDLK_UP] ? 1 : 0;
             down  = state[SDLK_DOWN] ? 1 : 0;
-            fire  = state[SDLK_SPACE] ? 1 : 0;
-            magic = state[SDLK_m] ? 1 : 0;
+            fire  = (state[SDLK_SPACE] || state[SDLK_PAGEDOWN]) ? 1 : 0;
+            magic = (state[SDLK_m] || state[SDLK_END]) ? 1 : 0;
         }
 #else /* } { */
         {
@@ -254,8 +254,8 @@ uint8_t wid_game_map_client_player_move (void)
             left  = state[SDL_SCANCODE_LEFT] ? 1 : 0;
             up    = state[SDL_SCANCODE_UP] ? 1 : 0;
             down  = state[SDL_SCANCODE_DOWN] ? 1 : 0;
-            fire  = state[SDL_SCANCODE_SPACE] ? 1 : 0;
-            magic = state[SDL_SCANCODE_M] ? 1 : 0;
+            fire  = (state[SDL_SCANCODE_SPACE] || state[SDL_SCANCODE_PAGEDOWN]) ? 1 : 0;
+            magic = (state[SDL_SCANCODE_M] || state[SDL_SCANCODE_END]) ? 1 : 0;
         }
 #endif /* } */
     }

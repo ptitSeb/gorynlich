@@ -64,8 +64,10 @@ char *TTF_PATH;
 char *GFX_PATH;
 int debug;
 
+#ifdef ENABLE_LOGFILE
 FILE *LOG_STDOUT;
 FILE *LOG_STDERR;
+#endif
 
 uint8_t quitting;
 uint8_t opt_quickstart;
@@ -527,8 +529,10 @@ static void parse_args (int32_t argc, char *argv[])
             on_server = true;
             is_client = false;
             is_headless = true;
+#ifdef ENABLE_LOG
             LOG_STDOUT = fopen("stdout.server.txt", "w+");
             LOG_STDERR = fopen("stderr.server.txt", "w+");
+#endif
             continue;
         }
 
@@ -603,10 +607,10 @@ int32_t main (int32_t argc, char *argv[])
 {
     mysrand(time(0));
 
+#ifdef ENABLE_LOGFILE
     LOG_STDOUT = fopen("stdout.txt", "w+");
     LOG_STDERR = fopen("stderr.txt", "w+");
 
-#ifdef ENABLE_LOGFILE
 #ifndef __IPHONE_OS_VERSION_MIN_REQUIRED
     if (!freopen("stdout.txt", "w", MY_STDOUT)) {
 	WARN("Failed to open MY_STDOUT.txt");
@@ -617,9 +621,9 @@ int32_t main (int32_t argc, char *argv[])
     }
 #endif
 #endif
-
+#ifndef NORAMDISK
     ramdisk_init();
-
+#endif
     ARGV = argv;
 
     dospath2unix(ARGV[0]);

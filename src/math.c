@@ -22,16 +22,16 @@ uint32_t nextpoweroftwo (uint32_t val)
     return (val);
 }
 
-double FSIN[RAD_MAX];
-double FASIN[RAD_MAX];
-double FCOS[RAD_MAX];
+Double FSIN[RAD_MAX];
+Double FASIN[RAD_MAX];
+Double FCOS[RAD_MAX];
 
 static void fsin_init (void)
 {
     uint16_t i;
 
     for (i = 0; i < RAD_MAX; i++) {
-        FSIN[i] = (double)sin(RAD_STEP * (double) i);
+        FSIN[i] = (Double)sin(RAD_STEP * (Double) i);
     }
 }
 
@@ -40,7 +40,7 @@ static void fasin_init (void)
     uint16_t i;
 
     for (i = 0; i < RAD_MAX; i++) {
-        FASIN[i] = (double)asin(RAD_STEP * (double) i);
+        FASIN[i] = (Double)asin(RAD_STEP * (Double) i);
     }
 }
 
@@ -49,7 +49,7 @@ static void fcos_init (void)
     uint16_t i;
 
     for (i = 0; i < RAD_MAX; i++) {
-        FCOS[i] = (double)cos(RAD_STEP * (double) i);
+        FCOS[i] = (Double)cos(RAD_STEP * (Double) i);
     }
 }
 
@@ -77,7 +77,7 @@ uint8_t get_line_intersection (fpoint p0,
     s2.x = p3.x - p2.x;
     s2.y = p3.y - p2.y;
 
-    double s, t;
+    Double s, t;
 
     s = (-s1.y * (p0.x - p2.x) + s1.x * (p0.y - p2.y)) /
             (-s2.x * s1.y + s1.x * s2.y);
@@ -102,18 +102,18 @@ uint8_t get_line_intersection (fpoint p0,
                                fpoint p3,
                                fpoint *intersect)
 {
-    double denominator = 
+    Double denominator = 
         ((p3.y - p2.y) * (p1.x - p0.x)) - ((p3.x - p2.x) * (p1.y - p0.y));
 
     if (denominator == 0) {
         return (false);
     }
 
-    double a = p0.y - p2.y;
-    double b = p0.x - p2.x;
+    Double a = p0.y - p2.y;
+    Double b = p0.x - p2.x;
 
-    double numerator1 = ((p3.x - p2.x) * a) - ((p3.y - p2.y) * b);
-    double numerator2 = ((p1.x - p0.x) * a) - ((p1.y - p0.y) * b);
+    Double numerator1 = ((p3.x - p2.x) * a) - ((p3.y - p2.y) * b);
+    Double numerator2 = ((p1.x - p0.x) * a) - ((p1.y - p0.y) * b);
 
     a = numerator1 / denominator;
     b = numerator2 / denominator;
@@ -140,18 +140,18 @@ uint8_t get_line_known_intersection (fpoint p0,
                                      fpoint p3,
                                      fpoint *intersect)
 {
-    double denominator = 
+    Double denominator = 
         ((p3.y - p2.y) * (p1.x - p0.x)) - ((p3.x - p2.x) * (p1.y - p0.y));
 
     if (denominator == 0) {
         return (false);
     }
 
-    double a = p0.y - p2.y;
-    double b = p0.x - p2.x;
+    Double a = p0.y - p2.y;
+    Double b = p0.x - p2.x;
 
-    double numerator1 = ((p3.x - p2.x) * a) - ((p3.y - p2.y) * b);
-    double numerator2 = ((p1.x - p0.x) * a) - ((p1.y - p0.y) * b);
+    Double numerator1 = ((p3.x - p2.x) * a) - ((p3.y - p2.y) * b);
+    Double numerator2 = ((p1.x - p0.x) * a) - ((p1.y - p0.y) * b);
 
     a = numerator1 / denominator;
     b = numerator2 / denominator;
@@ -165,7 +165,7 @@ uint8_t get_line_known_intersection (fpoint p0,
 }
 
 uint8_t 
-fpoint_dist_line (fpoint P0, fpoint L0, fpoint L1, double *dist,
+fpoint_dist_line (fpoint P0, fpoint L0, fpoint L1, Double *dist,
                   fpoint *intersect_out)
 {
     fpoint intersect;
@@ -206,7 +206,7 @@ fpoint_dist_line (fpoint P0, fpoint L0, fpoint L1, double *dist,
     return (1);
 }
 
-double 
+Double 
 fpoint_project_onto_line (fpoint P0, fpoint L0, fpoint L1)
 {
     float mag;
@@ -230,10 +230,10 @@ fpoint_project_onto_line (fpoint P0, fpoint L0, fpoint L1)
 /*
  * Yields an angle between 0 and 180 deg radians
  */
-double fpoint_angle (const fpoint A, const fpoint B)
+Double fpoint_angle (const fpoint A, const fpoint B)
 {
-    const double a = sqrt(A.x*A.x + A.y*A.y);
-    const double b = sqrt(B.x*B.x + B.y*B.y);
+    const Double a = sqrt(A.x*A.x + A.y*A.y);
+    const Double b = sqrt(B.x*B.x + B.y*B.y);
 
     if (!(a * b)) {
         return (0);
@@ -245,7 +245,7 @@ double fpoint_angle (const fpoint A, const fpoint B)
 /*
  * Yields an angle between -180 and 180 deg radians
  */
-double fpoint_angle_clockwise (const fpoint A, const fpoint B)
+Double fpoint_angle_clockwise (const fpoint A, const fpoint B)
 {
     return (atan2(A.x*B.y - A.y*B.x, A.x*B.x+A.y*B.y));
 }

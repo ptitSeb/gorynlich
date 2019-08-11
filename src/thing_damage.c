@@ -13,13 +13,13 @@ int32_t thing_stats_get_total_damage (thingp t)
 {
     static uint32_t last_msg;
 
-    double damage = t->damage;
+    Double damage = t->damage;
 
     if (!damage) {
         damage = tp_get_damage(t->tp);
     }
 
-    double modifier = 0;
+    Double modifier = 0;
 
     tpp weapon = thing_weapon(t);
     if (weapon) {
@@ -127,7 +127,7 @@ int32_t thing_stats_get_total_damage (thingp t)
     /*
      * Modifier of 1 maps to +10 % in damage.
      */
-    double final_damage = ceil(damage + (damage * (modifier / 10.0)));
+    Double final_damage = ceil(damage + (damage * (modifier / 10.0)));
 
     /*
      * Ok, not quite final

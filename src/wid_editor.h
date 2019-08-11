@@ -261,8 +261,8 @@ typedef struct {
 void wid_editor(level_pos_t);
 
 widp wid_editor_replace_template(widp w,
-                                 double x,
-                                 double y,
+                                 Double x,
+                                 Double y,
                                  thingp t,
                                  tpp tp,
                                  tpp_data,

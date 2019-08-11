@@ -8,12 +8,13 @@
 
 #undef ENABLE_CONSOLE
 #undef ENABLE_LOGFILE             // Log stdout and err to a file
+#undef ENABLE_LOG
 
 #undef ENABLE_LEAKCHECK           // Memory leak check
 #undef ENABLE_PTRCHECK            // Check validity of pointers too
 
 #undef ENABLE_MAP_SANITY          // Extra map checks
-#define ENABLE_ASSERT             // DIE on errors
+#undef ENABLE_ASSERT             // DIE on errors
 #undef ENABLE_TREE_SANITY         // Slow tree sanity
 #undef ENABLE_DEBUG               // More debugs
 #undef ENABLE_DEMARSHAL_DEBUG     // Demarshalling, prints structures

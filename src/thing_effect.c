@@ -230,11 +230,11 @@ static void thing_client_effect_hit_crit (thingp t)
 
 static void thing_client_effect_power_up (thingp t)
 {
-    double rad;
+    Double rad;
 
     for (rad = 0.0; rad < RAD_360; rad += RAD_360 / 360.0) {
         widp w = t->wid;
-        double px, py;
+        Double px, py;
 
         wid_get_pct(w, &px, &py);
 
@@ -242,8 +242,8 @@ static void thing_client_effect_power_up (thingp t)
         fpoint br = {0.1, 0.1};
 
         br.y = 
-            ((double)global_config.video_gl_width /
-             (double)global_config.video_gl_height) / 10.0;
+            ((Double)global_config.video_gl_width /
+             (Double)global_config.video_gl_height) / 10.0;
 
         widp power_up = wid_new_square_window("sparkle");
         wid_set_tl_br_pct(power_up, tl, br);
@@ -254,19 +254,19 @@ static void thing_client_effect_power_up (thingp t)
             delay = 100;
         }
 
-        double width = 0.05;
+        Double width = 0.05;
         px += fcos(rad) * width;
         py += (fsin(rad) * width) * 
-                        ((double)global_config.video_gl_width / 
-                         (double)global_config.video_gl_height);
+                        ((Double)global_config.video_gl_width / 
+                         (Double)global_config.video_gl_height);
 
         {
-            double width = wid_get_width(w) / 
-                            (double)global_config.video_gl_width;
+            Double width = wid_get_width(w) / 
+                            (Double)global_config.video_gl_width;
             px -= width / 8.0;
 
-            double height = wid_get_height(w) / 
-                            (double)global_config.video_gl_height;
+            Double height = wid_get_height(w) / 
+                            (Double)global_config.video_gl_height;
             py += height / 4.0;
         }
 

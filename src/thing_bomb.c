@@ -10,7 +10,7 @@
 
 thingp level_place_bomb (levelp level, 
                          thingp owner,
-                         double x, double y)
+                         Double x, Double y)
 {
     widp w = thing_place_behind_or_under(owner,
                                          id_to_tp(THING_BOMB),

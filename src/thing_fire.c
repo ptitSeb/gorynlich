@@ -26,8 +26,8 @@ static uint32_t thing_possible_hit_size;
  * Used for monsters firing intrinsic weapons
  */
 static void thing_fire_at_target_xy_ (thingp t, 
-                                      double target_x, 
-                                      double target_y, 
+                                      Double target_x, 
+                                      Double target_y, 
                                       int line_of_fire)
 {
     /*
@@ -38,16 +38,16 @@ static void thing_fire_at_target_xy_ (thingp t,
         return;
     }
 
-    double dx, dy;
+    Double dx, dy;
 
     /*
      * Any smaller than this and diagonal shots collide with adjoining walls.
      */
-    double dist_from_player = 0.7;
+    Double dist_from_player = 0.7;
 
-    double distance = DISTANCE(t->x, t->y, target_x, target_y);
-    double sx = (target_x - t->x) / distance;
-    double sy = (target_y - t->y) / distance;
+    Double distance = DISTANCE(t->x, t->y, target_x, target_y);
+    Double sx = (target_x - t->x) / distance;
+    Double sy = (target_y - t->y) / distance;
 
     dx = sx * dist_from_player;
     dy = sy * dist_from_player;
@@ -56,8 +56,8 @@ static void thing_fire_at_target_xy_ (thingp t,
      * Fire from the player position plus the initial delta so it looks like 
      * it comes from outside of the body.
      */
-    double x = t->x;
-    double y = t->y;
+    Double x = t->x;
+    Double y = t->y;
 
     tpp projectile = 0;
 
@@ -126,8 +126,8 @@ static void thing_fire_at_target_xy_ (thingp t,
         return;
     }
 
-    double fnexthop_x = p->x + p->dx;
-    double fnexthop_y = p->y + p->dy;
+    Double fnexthop_x = p->x + p->dx;
+    Double fnexthop_y = p->y + p->dy;
 
     thing_server_move(p,
                       fnexthop_x,
@@ -151,7 +151,7 @@ static void thing_fire_at_target_xy_ (thingp t,
 /*
  * Used for monster and players firing.
  */
-static void thing_fire_at_target_xy (thingp t, double target_x, double target_y)
+static void thing_fire_at_target_xy (thingp t, Double target_x, Double target_y)
 {
     /*
      * Cannot fire until we're on a level.
@@ -163,39 +163,39 @@ static void thing_fire_at_target_xy (thingp t, double target_x, double target_y)
 
     fpoint p1;
 
-    double x, y;
+    Double x, y;
 
     thing_real_to_fmap(t, &x, &y);
 
     p1.x = target_x - x;
     p1.y = target_y - y;
 
-    double d = 10.0;
-    double angle = anglerot(p1);
+    Double d = 10.0;
+    Double angle = anglerot(p1);
 
     if (thing_has_ability_burst_shot(t)) {
-        double spread = RAD_360 / 20.0;
-        double density = 3.0;
+        Double spread = RAD_360 / 20.0;
+        Double density = 3.0;
 
-        double a;
+        Double a;
         for (a = -spread; a <= spread; a += spread / density) {
-            double x = t->x + fcos(a + angle) * d;
-            double y = t->y + fsin(a + angle) * d;
+            Double x = t->x + fcos(a + angle) * d;
+            Double y = t->y + fsin(a + angle) * d;
 
             if (a != 0) {
                 thing_fire_at_target_xy_(t, x, y, false);
             }
         }
 
-        double x = t->x + fcos(angle) * d;
-        double y = t->y + fsin(angle) * d;
+        Double x = t->x + fcos(angle) * d;
+        Double y = t->y + fsin(angle) * d;
         thing_fire_at_target_xy_(t, x, y, true);
 
     } else if (thing_has_ability_triple_shot(t)) {
-        double spread = RAD_360 / 40;
+        Double spread = RAD_360 / 40;
 
-        double x = t->x + fcos(angle + spread) * d;
-        double y = t->y + fsin(angle + spread) * d;
+        Double x = t->x + fcos(angle + spread) * d;
+        Double y = t->y + fsin(angle + spread) * d;
         thing_fire_at_target_xy_(t, x, y, false);
 
         x = t->x + fcos(angle - spread) * d;
@@ -207,10 +207,10 @@ static void thing_fire_at_target_xy (thingp t, double target_x, double target_y)
         thing_fire_at_target_xy_(t, x, y, true);
 
     } else if (thing_has_ability_double_shot(t)) {
-        double spread = RAD_360 / 60;
+        Double spread = RAD_360 / 60;
 
-        double x = t->x + fcos(angle - spread) * d;
-        double y = t->y + fsin(angle - spread) * d;
+        Double x = t->x + fcos(angle - spread) * d;
+        Double y = t->y + fsin(angle - spread) * d;
         thing_fire_at_target_xy_(t, x, y, false);
 
         x = t->x + fcos(angle + spread) * d;
@@ -218,18 +218,18 @@ static void thing_fire_at_target_xy (thingp t, double target_x, double target_y)
         thing_fire_at_target_xy_(t, x, y, true);
 
     } else if (thing_has_ability_reverse_shot(t)) {
-        double spread = RAD_360 / 2;
+        Double spread = RAD_360 / 2;
 
-        double x = t->x + fcos(angle - spread) * d;
-        double y = t->y + fsin(angle - spread) * d;
+        Double x = t->x + fcos(angle - spread) * d;
+        Double y = t->y + fsin(angle - spread) * d;
         thing_fire_at_target_xy_(t, x, y, false);
 
         x = t->x + fcos(angle) * d;
         y = t->y + fsin(angle) * d;
         thing_fire_at_target_xy_(t, x, y, true);
     } else {
-        double x = t->x + fcos(angle) * d;
-        double y = t->y + fsin(angle) * d;
+        Double x = t->x + fcos(angle) * d;
+        Double y = t->y + fsin(angle) * d;
 
         thing_fire_at_target_xy_(t, x, y, true);
     }
@@ -274,12 +274,12 @@ void thing_server_fire (thingp t,
      */
     thing_weapon_check_for_damage_on_firing(t, weapon);
 
-    double dx, dy;
+    Double dx, dy;
 
     /*
      * Any smaller than this and diagonal shots collide with adjoining walls.
      */
-    double dist_from_player = 0.7;
+    Double dist_from_player = 0.7;
 
     /*
      * Try current direction.
@@ -352,15 +352,15 @@ void thing_server_fire (thingp t,
      * Fire from the player position plus the initial delta so it looks like 
      * it comes from outside of the body.
      */
-    double x;
-    double y;
+    Double x;
+    Double y;
 
     thing_real_to_fmap(t, &x, &y);
     x += dx;
     y += dy;
 
-    double target_x = x + dx * 10;
-    double target_y = y + dy * 10;
+    Double target_x = x + dx * 10;
+    Double target_y = y + dy * 10;
 
     tpp projectile = tp_fires(weapon);
     if (!projectile) {
@@ -380,33 +380,33 @@ void thing_server_fire (thingp t,
 
 static void thing_fire_conical_at (thingp t, thingp target)
 {
-    double target_x, target_y;
+    Double target_x, target_y;
     thing_real_to_fmap(target, &target_x, &target_y);
 
-    double distance = DISTANCE(t->x, t->y, target_x, target_y);
+    Double distance = DISTANCE(t->x, t->y, target_x, target_y);
 
     fpoint p1;
 
     p1.x = target_x - t->x;
     p1.y = target_y - t->y;
 
-    double angle = anglerot(p1);
-    double spread = RAD_360 / 360.0;
-    double density = 1.0;
+    Double angle = anglerot(p1);
+    Double spread = RAD_360 / 360.0;
+    Double density = 1.0;
 
-    double d;
+    Double d;
 
     if (thing_is_dragon(t)) {
         for (d = 3.0; d < distance * 1.5; d += 1.0) {
 
-            double a;
+            Double a;
 
             spread += RAD_360 / 360.0;
             density += 1.0;
 
             for (a = -spread; a <= spread; a += spread / density) {
-                double x = t->x + fcos(a + angle) * d;
-                double y = t->y + fsin(a + angle) * d;
+                Double x = t->x + fcos(a + angle) * d;
+                Double y = t->y + fsin(a + angle) * d;
 
                 level_place_explosion(server_level, t, 
                                     tp_fires(t->tp),
@@ -417,14 +417,14 @@ static void thing_fire_conical_at (thingp t, thingp target)
     } else {
         for (d = 1.0; d < distance; d += 1.0) {
 
-            double a;
+            Double a;
 
             spread += RAD_360 / 360.0;
             density += 1.0;
 
             for (a = -spread; a <= spread; a += spread / density) {
-                double x = t->x + fcos(a + angle) * d;
-                double y = t->y + fsin(a + angle) * d;
+                Double x = t->x + fcos(a + angle) * d;
+                Double y = t->y + fsin(a + angle) * d;
 
                 level_place_explosion(server_level, t, 
                                     tp_fires(t->tp),
@@ -464,7 +464,7 @@ static void thing_fire_at (thingp t, thingp target)
         projectile = tp_fires(t->tp);
     }
 
-    double target_x, target_y;
+    Double target_x, target_y;
     thing_real_to_fmap(target, &target_x, &target_y);
 
     if (!projectile) {
@@ -473,9 +473,9 @@ static void thing_fire_at (thingp t, thingp target)
          * just looks daft.
          */
 
-        double distance = DISTANCE(t->x, t->y, target_x, target_y);
-        double dx = (target_x - t->x) / distance;
-        double dy = (target_y - t->y) / distance;
+        Double distance = DISTANCE(t->x, t->y, target_x, target_y);
+        Double dx = (target_x - t->x) / distance;
+        Double dy = (target_y - t->y) / distance;
 
         if (distance > 2.0) {
             return;
@@ -497,7 +497,7 @@ static void thing_fire_at (thingp t, thingp target)
 static void 
 thing_possible_hit_add (thingp me, thingp target)
 {
-    double target_x, target_y;
+    Double target_x, target_y;
     thing_real_to_fmap(target, &target_x, &target_y);
 
     if (!can_see(server_level, me->x, me->y, target_x, target_y)) {
@@ -563,9 +563,9 @@ static void thing_fire_at_best_target (thingp hitter)
             /*
              * If this target is closer, prefer it.
              */
-            double dist_best = DISTANCE(hitter->x, hitter->y,
+            Double dist_best = DISTANCE(hitter->x, hitter->y,
                                         best->target->x, best->target->y);
-            double dist_cand = DISTANCE(hitter->x, hitter->y,
+            Double dist_cand = DISTANCE(hitter->x, hitter->y,
                                         cand->target->x, cand->target->y);
 
             if (dist_cand < dist_best) {

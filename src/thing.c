@@ -583,7 +583,7 @@ void thing_map_add (thingp t, int32_t x, int32_t y)
  * Create a new thing.
  */
 thingp thing_server_new (const char *name,
-                         double x, double y,
+                         Double x, Double y,
                          thing_statsp stats)
 {
     thingp t;
@@ -839,7 +839,7 @@ thingp thing_server_new (const char *name,
 /*
  * Reinit this player on a new level
  */
-void thing_server_init (thingp t, double x, double y)
+void thing_server_init (thingp t, Double x, Double y)
 {
     /*
      * Start out not on the map.
@@ -2260,7 +2260,7 @@ int thing_hit (thingp t, thingp hitter, uint32_t damage)
              * through walls! Actually I now like the effect. Keep it.
              */
 #if 0
-            double dist = DISTANCE(hitter->x, hitter->y, t->x, t->y);
+            Double dist = DISTANCE(hitter->x, hitter->y, t->x, t->y);
             if (dist > 1.0) {
                 /*
                  * Too far.
@@ -3179,15 +3179,15 @@ const char * thing_tooltip (thingp t)
     return (tp_get_tooltip(t->tp));
 }
 
-double thing_speed (thingp t)
+Double thing_speed (thingp t)
 {
     verify(t);
 
     if (t->is_jumping) {
-        return (((double)tp_get_jump_speed(t->tp)));
+        return (((Double)tp_get_jump_speed(t->tp)));
     }
 
-    return (((double)thing_stats_get_total_speed(t)));
+    return (((Double)thing_stats_get_total_speed(t)));
 }
 
 tree_rootp thing_tiles (thingp t)
@@ -3222,8 +3222,8 @@ thing_tilep thing_current_tile (thingp t)
  * Place a thing after a delay.
  */
 void thing_place_timed (tpp tp,
-                        double x,
-                        double y,
+                        Double x,
+                        Double y,
                         uint32_t ms,
                         uint32_t jitter,
                         uint8_t on_server)
@@ -3254,8 +3254,8 @@ void thing_place_timed (tpp tp,
 void thing_place_and_destroy_timed (levelp level,
                                     tpp tp,
                                     thingp owner,
-                                    double x,
-                                    double y,
+                                    Double x,
+                                    Double y,
                                     uint32_t ms,
                                     uint32_t destroy_in,
                                     uint32_t jitter,
@@ -3331,7 +3331,7 @@ void thing_teleport (thingp t, int32_t x, int32_t y)
         ERR("no floor tile to hpp to");
     }
 
-    double next_floor_x, next_floor_y;
+    Double next_floor_x, next_floor_y;
 
     wid_get_mxy(wid_next_floor, &next_floor_x, &next_floor_y);
 
@@ -3343,7 +3343,7 @@ void thing_teleport (thingp t, int32_t x, int32_t y)
     sound_play_level_end();
 }
 
-void thing_move (thingp t, double x, double y)
+void thing_move (thingp t, Double x, Double y)
 {
     verify(t);
 
@@ -3487,8 +3487,8 @@ void socket_server_tx_map_update (gsocketp p, tree_rootp tree, const char *type)
 
         widp w = thing_wid(t);
         if (w) {
-            double rx = t->x;
-            double ry = t->y;
+            Double rx = t->x;
+            Double ry = t->y;
             thing_round(t, &rx, &ry);
             tx = (uint16_t)(int)(rx * 256.0);
             ty = (uint16_t)(int)(ry * 256.0);
@@ -3655,7 +3655,7 @@ void socket_server_tx_map_update (gsocketp p, tree_rootp tree, const char *type)
         }
 
         if (ext2 & (1 << THING_STATE_BIT_SHIFT_EXT2_SCALE)) {
-            *data++ = (uint8_t) (int) (((double)t->scale) * 32.0);
+            *data++ = (uint8_t) (int) (((Double)t->scale) * 32.0);
         }
 
         if (ext1 & (1 << THING_STATE_BIT_SHIFT_EXT1_EFFECT_PRESENT)) {
@@ -3789,8 +3789,8 @@ void socket_client_rx_map_update (gsocketp s, UDPpacket *packet, uint8_t *data)
         uint16_t id;
         uint8_t on_map;
         thingp t;
-        double x;
-        double y;
+        Double x;
+        Double y;
         uint16_t tx;
         uint16_t ty;
 
@@ -3854,8 +3854,8 @@ void socket_client_rx_map_update (gsocketp s, UDPpacket *packet, uint8_t *data)
 //CON("  tx       0x%04x", tx);
 //CON("  ty       0x%04x", ty);
 
-            x = ((double)tx) / 256.0;
-            y = ((double)ty) / 256.0;
+            x = ((Double)tx) / 256.0;
+            y = ((Double)ty) / 256.0;
         } else {
             tx = 0xFFFF;
             ty = 0xFFFF;
@@ -3921,9 +3921,9 @@ void socket_client_rx_map_update (gsocketp s, UDPpacket *packet, uint8_t *data)
             c.b = *data++;
         }
 
-        double scale = 1.0;
+        Double scale = 1.0;
         if (ext2 & (1 << THING_STATE_BIT_SHIFT_EXT2_SCALE)) {
-            scale = ((double)((int)*data++)) / 32.0;
+            scale = ((Double)((int)*data++)) / 32.0;
         }
 
         if (ext1 & (1 << THING_STATE_BIT_SHIFT_EXT1_EFFECT_PRESENT)) {
@@ -4191,8 +4191,8 @@ if (t->is_jumping) {
 }
 
 void thing_move_set_dir (thingp t,
-                         double *x,
-                         double *y,
+                         Double *x,
+                         Double *y,
                          uint8_t up,
                          uint8_t down,
                          uint8_t left,
@@ -4207,8 +4207,8 @@ void thing_move_set_dir (thingp t,
         return;
     }
 
-    double ox = t->x;
-    double oy = t->y;
+    Double ox = t->x;
+    Double oy = t->y;
 
     if (*x < 0) {
         *x = 0;

@@ -224,7 +224,7 @@ static void level_get_tp (levelp level,
  */
 widp
 wid_game_map_server_replace_tile (widp w,
-                                  double x, double y,
+                                  Double x, Double y,
                                   thingp t,
                                   tpp tp,
                                   tpp_data data,

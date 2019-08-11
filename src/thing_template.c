@@ -1400,22 +1400,22 @@ uint32_t tp_get_id_per_level (tpp t)
     return (t->id_per_level);
 }
 
-double tp_get_light_radius (tpp t)
+Double tp_get_light_radius (tpp t)
 {
     return (t->light_radius);
 }
 
-double tp_get_weapon_density (tpp t)
+Double tp_get_weapon_density (tpp t)
 {
     return (t->weapon_density);
 }
 
-double tp_get_weapon_spread (tpp t)
+Double tp_get_weapon_spread (tpp t)
 {
     return (t->weapon_spread);
 }
 
-double tp_get_scale (tpp t)
+Double tp_get_scale (tpp t)
 {
     if (!t->scale) {
         return (1.0);
@@ -1424,7 +1424,7 @@ double tp_get_scale (tpp t)
     return (t->scale);
 }
 
-double tp_get_explosion_radius (tpp t)
+Double tp_get_explosion_radius (tpp t)
 {
     if (!t->explosion_radius) {
         return (1.0);
@@ -1433,7 +1433,7 @@ double tp_get_explosion_radius (tpp t)
     return (t->explosion_radius);
 }
 
-double tp_get_collision_radius (tpp t)
+Double tp_get_collision_radius (tpp t)
 {
     return (t->collision_radius);
 }

@@ -393,7 +393,7 @@ wid_player_action_button_joy_down (widp w,
 
 static void wid_player_action_tooltip (widp w, widp tooltip)
 {
-    double px, py;
+    Double px, py;
 
     wid_get_pct(w, &px, &py);
 
@@ -407,8 +407,8 @@ static void wid_player_action_tooltip (widp w, widp tooltip)
 
 static void wid_player_action_create (thing_statsp s, int fast)
 {
-    double left_ball_offset = -0.07;
-    double right_ball_offset = 0.045;
+    Double left_ball_offset = -0.07;
+    Double right_ball_offset = 0.045;
 
     if (wid_player_action) {
         return;
@@ -714,7 +714,7 @@ static void wid_player_action_create (thing_statsp s, int fast)
                     br.y += dy;
 
                     wid_set_tl_br_pct(heart, tl, br);
-                    double px, py;
+                    Double px, py;
                     wid_get_pct(heart, &px, &py);
 
                     wid_set_thing_template(heart, what);

@@ -8,7 +8,7 @@
 #include "thing.h"
 #include "math_util.h"
 
-void thing_dir (thingp t, double *dx, double *dy)
+void thing_dir (thingp t, Double *dx, Double *dy)
 {
     *dx = 0;
     *dy = 0;
@@ -50,7 +50,7 @@ void thing_dir (thingp t, double *dx, double *dy)
     }
 }
 
-int thing_angle_to_dir (double dx, double dy)
+int thing_angle_to_dir (Double dx, Double dy)
 {
     fpoint r;
     r.x = dx;

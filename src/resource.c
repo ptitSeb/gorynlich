@@ -46,13 +46,13 @@ static uint8_t resource_init_1a (void *context)
 static uint8_t resource_init_2 (void *context)
 {
     return (tex_load("data/gfx/title2.tga",
-                     "title2") != 0);
+                     "title2") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_3 (void *context)
 {
     return (tex_load("data/gfx/title.tga",
-                     "title") != 0);
+                     "title") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_4 (void *context)
@@ -66,31 +66,31 @@ static uint8_t resource_init_4 (void *context)
            (tex_load("data/gfx/player4.tga",
                      "player4") != 0) &&
            (tex_load("data/gfx/player5.tga",
-                     "player5") != 0);
+                     "player5") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_5 (void *context)
 {
     return (tex_load("data/gfx/gothic_tall_chest.tga",
-                     "gothic_tall_chest") != 0);
+                     "gothic_tall_chest") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_6 (void *context)
 {
     return (tex_load("data/gfx/gothic_tall_skull.tga",
-                     "gothic_tall_skull") != 0);
+                     "gothic_tall_skull") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_7 (void *context)
 {
     return (tex_load("data/gfx/dragon.tga",
-                     "dragon") != 0);
+                     "dragon") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_8 (void *context)
 {
     return (tex_load("data/gfx/title3.tga",
-                     "title3") != 0);
+                     "title3") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_9 (void *context)
@@ -102,40 +102,40 @@ static uint8_t resource_init_9 (void *context)
 static uint8_t resource_init_10 (void *context)
 {
     return (tex_load("data/gfx/gravestone.tga",
-                     "gravestone") != 0);
+                     "gravestone") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_11 (void *context)
 {
     return (tex_load("data/gfx/gravestone2.tga",
-                     "gravestone2") != 0);
+                     "gravestone2") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_12 (void *context)
 {
     return (tex_load("data/gfx/main_title.tga",
-                     "main_title") != 0);
+                     "main_title") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_13 (void *context)
 {
     return (tex_load_tiled("data/gfx/explosion.tga",
                            "explosion",
-                           1024, 1024) != 0);
+                           512, 512) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_14 (void *context)
 {
     return (tex_load_tiled("data/gfx/cloudkill.tga",
                            "cloudkill",
-                           1024, 1024) != 0);
+                           512, 512) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_15 (void *context)
 {
     return (tex_load_tiled("data/gfx/poison.tga",
                            "poison",
-                           1024, 1024) != 0);
+                           512, 512) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_16 (void *context)
@@ -147,7 +147,7 @@ static uint8_t resource_init_17 (void *context)
 {
     return (tex_load_tiled("data/gfx/anim_treasure_chest.tga",
                            "anim_treasure_chest",
-                           1024, 1024) != 0);
+                           512, 512) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_18 (void *context)
@@ -160,13 +160,13 @@ static uint8_t resource_init_18 (void *context)
 static uint8_t resource_init_19 (void *context)
 {
     return (tex_load("data/gfx/giant_rock.tga",
-                     "giant_rock") != 0);
+                     "giant_rock") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_20 (void *context)
 {
     return (tex_load("data/gfx/wall_floor.tga",
-                     "wall_floor") != 0);
+                     "wall_floor") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_21 (void *context)
@@ -182,7 +182,7 @@ static uint8_t resource_init_22 (void *context)
     return (tex_load_tiled_black_and_white("data/gfx/tall.tga",
                                            "tall",
                                            "tall_black_and_white",
-                                           32, 64) != 0);
+                                           32, 64) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_23 (void *context)
@@ -196,13 +196,13 @@ static uint8_t resource_init_23 (void *context)
 static uint8_t resource_init_24 (void *context)
 {
     return (tex_load("data/gfx/title4.tga",
-                     "title4") != 0);
+                     "title4") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_25 (void *context)
 {
     return (tex_load("data/gfx/button_black.tga",
-                     "button_black") != 0);
+                     "button_black") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_26 (void *context)
@@ -220,13 +220,13 @@ static uint8_t resource_init_27 (void *context)
 static uint8_t resource_init_28 (void *context)
 {
     return (tex_load("data/gfx/crystalball.tga",
-                     "crystalball") != 0);
+                     "crystalball") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_29 (void *context)
 {
     return (tex_load("data/gfx/crystalball_purple.tga",
-                     "crystalball_purple") != 0);
+                     "crystalball_purple") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_30 (void *context)
@@ -234,49 +234,49 @@ static uint8_t resource_init_30 (void *context)
     return (tex_load("data/gfx/title5.tga",
                      "title5") != 0) &&
            (tex_load("data/gfx/title6.tga",
-                     "title6") != 0);
+                     "title6") != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_31 (void *context)
 {
     return (tex_load_tiled("data/gfx/sawblade.tga",
                            "sawblade",
-                           512, 512) != 0);
+                           256, 256) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_32 (void *context)
 {
     return (tex_load_tiled("data/gfx/sawblade2.tga",
                            "sawblade2",
-                           512, 512) != 0);
+                           256, 256) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_33 (void *context)
 {
     return (tex_load_tiled("data/gfx/sawblade3.tga",
                            "sawblade3",
-                           512, 512) != 0);
+                           256, 256) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_34 (void *context)
 {
     return (tex_load_tiled("data/gfx/sawblade4.tga",
                            "sawblade4",
-                           512, 512) != 0);
+                           256, 256) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_35 (void *context)
 {
     return (tex_load_tiled("data/gfx/sawblade5.tga",
                            "sawblade5",
-                           512, 512) != 0);
+                           256, 256) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_36 (void *context)
 {
     return (tex_load_tiled("data/gfx/shield1.tga",
                            "shield1",
-                           2048, 1024) != 0);
+                           512, 256) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_37 (void *context)
@@ -309,23 +309,23 @@ static uint8_t resource_init_40 (void *context)
                            512, 1024) != 0) &&
            (tex_load_tiled("data/gfx/jesus.tga",
                            "jesus",
-                           512, 512) != 0);
+                           512, 512) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_41 (void *context)
 {
     return (tex_load_tiled("data/gfx/teleport.tga",
                            "teleport",
-                           1024, 1024) != 0) &&
+                           256, 256) != 0) &&
            (tex_load_tiled("data/gfx/ring.tga",
                            "ring_cloud",
-                           2048, 1024) != 0);
+                           512, 256) != 0); //SEB Reduced
 }
 
 static uint8_t resource_init_last (void *context)
 {
     static const char *small_tiles[] = {
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 00
         "space",
         "large-collision-map",
         "medium-collision-map",
@@ -358,7 +358,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 01
         "key",
         "keys2",
         "keys3",
@@ -391,7 +391,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 02
         "torch1",
         "torch2",
         "torch3",
@@ -424,7 +424,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 03
         "sword1",
         "sword2",
         "sword3",
@@ -457,7 +457,7 @@ static uint8_t resource_init_last (void *context)
         "ring3",
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 04
         "sword7",
         "sword8",
         "sword9",
@@ -490,7 +490,7 @@ static uint8_t resource_init_last (void *context)
         "ring6",
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 05
         "floor1.1",
         "floor1.2",
         "floor1.3",
@@ -523,7 +523,7 @@ static uint8_t resource_init_last (void *context)
         "floor4.6",
         "floor4.7",
         "floor4.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 06
         "floor5.1",
         "floor5.2",
         "floor5.3",
@@ -556,7 +556,7 @@ static uint8_t resource_init_last (void *context)
         "floor8.6",
         "floor8.7",
         "floor8.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 07
         "floor9.1",
         "floor9.2",
         "floor9.3",
@@ -589,7 +589,7 @@ static uint8_t resource_init_last (void *context)
         "floor12.6",
         "floor12.7",
         "floor12.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 08
         "floor13.1",
         "floor13.2",
         "floor13.3",
@@ -622,7 +622,7 @@ static uint8_t resource_init_last (void *context)
         "floor16.6",
         "floor16.7",
         "floor16.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 09
         "floor17.1",
         "floor17.2",
         "floor17.3",
@@ -655,7 +655,7 @@ static uint8_t resource_init_last (void *context)
         "floor20.6",
         "floor20.7",
         "floor20.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 0A
         "floor21.1",
         "floor21.2",
         "floor21.3",
@@ -688,7 +688,7 @@ static uint8_t resource_init_last (void *context)
         "floor24.6",
         "floor24.7",
         "floor24.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 0B
         "floor25.1",
         "floor25.2",
         "floor25.3",
@@ -721,7 +721,7 @@ static uint8_t resource_init_last (void *context)
         "floor28.6",
         "floor28.7",
         "floor28.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 0C
         "floor29.1",
         "floor29.2",
         "floor29.3",
@@ -754,7 +754,7 @@ static uint8_t resource_init_last (void *context)
         "floor32.6",
         "floor32.7",
         "floor32.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 0D
         "floor33.1",
         "floor33.2",
         "floor33.3",
@@ -787,7 +787,7 @@ static uint8_t resource_init_last (void *context)
         "floor36.6",
         "floor36.7",
         "floor36.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 0E
         "floor37.1",
         "floor37.2",
         "floor37.3",
@@ -820,7 +820,7 @@ static uint8_t resource_init_last (void *context)
         "floor40.6",
         "floor40.7",
         "floor40.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 0F
         "floor41.1",
         "floor41.2",
         "floor41.3",
@@ -853,7 +853,7 @@ static uint8_t resource_init_last (void *context)
         "floor44.6",
         "floor44.7",
         "floor44.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 10
         "floor45.1",
         "floor45.2",
         "floor45.3",
@@ -886,7 +886,7 @@ static uint8_t resource_init_last (void *context)
         "floor48.6",
         "floor48.7",
         "floor48.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 11
         "floor49.1",
         "floor49.2",
         "floor49.3",
@@ -919,7 +919,7 @@ static uint8_t resource_init_last (void *context)
         "floor52.6",
         "floor52.7",
         "floor52.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 12
         "floor53.1",
         "floor53.2",
         "floor53.3",
@@ -952,7 +952,7 @@ static uint8_t resource_init_last (void *context)
         "floor56.6",
         "floor56.7",
         "floor56.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 13
         "floor57.1",
         "floor57.2",
         "floor57.3",
@@ -985,7 +985,7 @@ static uint8_t resource_init_last (void *context)
         "floor60.6",
         "floor60.7",
         "floor60.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 14
         "floor61.1",
         "floor61.2",
         "floor61.3",
@@ -1018,7 +1018,7 @@ static uint8_t resource_init_last (void *context)
         "floor64.6",
         "floor64.7",
         "floor64.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 15
         "floor65.1",
         "floor65.2",
         "floor65.3",
@@ -1051,7 +1051,7 @@ static uint8_t resource_init_last (void *context)
         "floor68.6",
         "floor68.7",
         "floor68.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 16
         "door_1_0",
         "door_1_is_join_node",
         "door_1_is_join_left",
@@ -1084,7 +1084,7 @@ static uint8_t resource_init_last (void *context)
         "door_1_is_join_t180_1",
         "door_1_is_join_t90_1",
         "door_1_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 17
         "door_1_is_join_x",
         "door_1_is_join_x1",
         "door_1_is_join_x1_270",
@@ -1117,7 +1117,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 18
         "door_2_0",
         "door_2_is_join_node",
         "door_2_is_join_left",
@@ -1150,7 +1150,7 @@ static uint8_t resource_init_last (void *context)
         "door_2_is_join_t180_1",
         "door_2_is_join_t90_1",
         "door_2_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 19
         "door_2_is_join_x",
         "door_2_is_join_x1",
         "door_2_is_join_x1_270",
@@ -1183,7 +1183,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 1A
         "wall1_0_0",
         "wall1_0_is_join_node",
         "wall1_0_is_join_left",
@@ -1216,7 +1216,7 @@ static uint8_t resource_init_last (void *context)
         "wall1_0_is_join_t180_1",
         "wall1_0_is_join_t90_1",
         "wall1_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 1B
         "wall1_0_is_join_x",
         "wall1_0_is_join_x1",
         "wall1_0_is_join_x1_270",
@@ -1249,7 +1249,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 1C
         "wall11_0_0",
         "wall11_0_is_join_node",
         "wall11_0_is_join_left",
@@ -1282,7 +1282,7 @@ static uint8_t resource_init_last (void *context)
         "wall11_0_is_join_t180_1",
         "wall11_0_is_join_t90_1",
         "wall11_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 1D
         "wall11_0_is_join_x",
         "wall11_0_is_join_x1",
         "wall11_0_is_join_x1_270",
@@ -1315,7 +1315,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 1E
         "corridor_wall1_0_0",
         "corridor_wall1_0_is_join_node",
         "corridor_wall1_0_is_join_left",
@@ -1348,7 +1348,7 @@ static uint8_t resource_init_last (void *context)
         "corridor_wall1_0_is_join_t180_1",
         "corridor_wall1_0_is_join_t90_1",
         "corridor_wall1_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 1F
         "corridor_wall1_0_is_join_x",
         "corridor_wall1_0_is_join_x1",
         "corridor_wall1_0_is_join_x1_270",
@@ -1381,7 +1381,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 20
         "wall2_0_0",
         "wall2_0_is_join_node",
         "wall2_0_is_join_left",
@@ -1414,7 +1414,7 @@ static uint8_t resource_init_last (void *context)
         "wall2_0_is_join_t180_1",
         "wall2_0_is_join_t90_1",
         "wall2_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 21
         "wall2_0_is_join_x",
         "wall2_0_is_join_x1",
         "wall2_0_is_join_x1_270",
@@ -1447,7 +1447,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 22
         "wall3_0_0",
         "wall3_0_is_join_node",
         "wall3_0_is_join_left",
@@ -1480,7 +1480,7 @@ static uint8_t resource_init_last (void *context)
         "wall3_0_is_join_t180_1",
         "wall3_0_is_join_t90_1",
         "wall3_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 23
         "wall3_0_is_join_x",
         "wall3_0_is_join_x1",
         "wall3_0_is_join_x1_270",
@@ -1513,7 +1513,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 24
         "wall4_0_0",
         "wall4_0_is_join_node",
         "wall4_0_is_join_left",
@@ -1546,7 +1546,7 @@ static uint8_t resource_init_last (void *context)
         "wall4_0_is_join_t180_1",
         "wall4_0_is_join_t90_1",
         "wall4_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 25
         "wall4_0_is_join_x",
         "wall4_0_is_join_x1",
         "wall4_0_is_join_x1_270",
@@ -1579,7 +1579,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 26
         "wall5_0_0",
         "wall5_0_is_join_node",
         "wall5_0_is_join_left",
@@ -1612,7 +1612,7 @@ static uint8_t resource_init_last (void *context)
         "wall5_0_is_join_t180_1",
         "wall5_0_is_join_t90_1",
         "wall5_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 27
         "wall5_0_is_join_x",
         "wall5_0_is_join_x1",
         "wall5_0_is_join_x1_270",
@@ -1645,7 +1645,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 28
         "wall6_0_0",
         "wall6_0_is_join_node",
         "wall6_0_is_join_left",
@@ -1678,7 +1678,7 @@ static uint8_t resource_init_last (void *context)
         "wall6_0_is_join_t180_1",
         "wall6_0_is_join_t90_1",
         "wall6_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 29
         "wall6_0_is_join_x",
         "wall6_0_is_join_x1",
         "wall6_0_is_join_x1_270",
@@ -1711,7 +1711,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 2A
         "wall7_0_0",
         "wall7_0_is_join_node",
         "wall7_0_is_join_left",
@@ -1744,7 +1744,7 @@ static uint8_t resource_init_last (void *context)
         "wall7_0_is_join_t180_1",
         "wall7_0_is_join_t90_1",
         "wall7_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 2B
         "wall7_0_is_join_x",
         "wall7_0_is_join_x1",
         "wall7_0_is_join_x1_270",
@@ -1777,7 +1777,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 2C
         "wall8_0_0",
         "wall8_0_is_join_node",
         "wall8_0_is_join_left",
@@ -1810,7 +1810,7 @@ static uint8_t resource_init_last (void *context)
         "wall8_0_is_join_t180_1",
         "wall8_0_is_join_t90_1",
         "wall8_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 2D
         "wall8_0_is_join_x",
         "wall8_0_is_join_x1",
         "wall8_0_is_join_x1_270",
@@ -1843,7 +1843,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 2E
         "wall9_0_0",
         "wall9_0_is_join_node",
         "wall9_0_is_join_left",
@@ -1876,7 +1876,7 @@ static uint8_t resource_init_last (void *context)
         "wall9_0_is_join_t180_1",
         "wall9_0_is_join_t90_1",
         "wall9_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 2F
         "wall9_0_is_join_x",
         "wall9_0_is_join_x1",
         "wall9_0_is_join_x1_270",
@@ -1909,7 +1909,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 30
         "wall10_0_0",
         "wall10_0_is_join_node",
         "wall10_0_is_join_left",
@@ -1942,7 +1942,7 @@ static uint8_t resource_init_last (void *context)
         "wall10_0_is_join_t180_1",
         "wall10_0_is_join_t90_1",
         "wall10_0_is_join_t_1",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 31
         "wall10_0_is_join_x",
         "wall10_0_is_join_x1",
         "wall10_0_is_join_x1_270",
@@ -1975,7 +1975,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 32
         "fireball1a-tr",
         "fireball1a-right",
         "fireball1a-br",
@@ -2008,7 +2008,7 @@ static uint8_t resource_init_last (void *context)
         "fireball1d-left",
         "fireball1d-tl",
         "fireball1d-up",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 33
         "pellets",
         "fireball2-2",
         "fireball2-3",
@@ -2041,7 +2041,7 @@ static uint8_t resource_init_last (void *context)
         "fireball2-30",
         "fireball2-31",
         "fireball2-32",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 34
         "fireball3-1",
         "fireball3-2",
         "fireball3-3",
@@ -2074,7 +2074,7 @@ static uint8_t resource_init_last (void *context)
         "fireball3-30",
         "fireball3-31",
         "fireball3-32",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 35
         "plasmaball1-1",
         "plasmaball1-2",
         "plasmaball1-3",
@@ -2107,7 +2107,7 @@ static uint8_t resource_init_last (void *context)
         "plasmaball1-30",
         "plasmaball1-31",
         "plasmaball1-32",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 36
         "silkball-1",
         "silkball-2",
         "silkball-3",
@@ -2140,7 +2140,7 @@ static uint8_t resource_init_last (void *context)
         "silkball-30",
         "silkball-31",
         "silkball-32",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 37
         "energy1-1",
         "energy1-2",
         "energy1-3",
@@ -2173,7 +2173,7 @@ static uint8_t resource_init_last (void *context)
         "energy1-30",
         "energy1-31",
         "energy1-32",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 38
         "flames1.1",
         "flames1.2",
         "flames1.3",
@@ -2206,7 +2206,7 @@ static uint8_t resource_init_last (void *context)
         "flames1.30",
         "flames1.31",
         "flames1.32",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 39
         "bubbles1.1",
         "bubbles1.2",
         "bubbles1.3",
@@ -2239,7 +2239,7 @@ static uint8_t resource_init_last (void *context)
         "bubbles1.30",
         "bubbles1.31",
         "bubbles1.32",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 3A
         0,
         0,
         0,
@@ -2272,7 +2272,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 3B
         0,
         0,
         0,
@@ -2305,7 +2305,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 3C
         0,
         0,
         0,
@@ -2338,7 +2338,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 3D
         "skull1-1-eyes",
         "skull1-2-eyes",
         "skull1-3-eyes",
@@ -2371,7 +2371,7 @@ static uint8_t resource_init_last (void *context)
         "skull1-30-eyes",
         "skull1-31-eyes",
         "skull1-32-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 3E
         "skull1-1",
         "skull1-2",
         "skull1-3",
@@ -2404,7 +2404,7 @@ static uint8_t resource_init_last (void *context)
         "skull1-30",
         "skull1-31",
         "skull1-32",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 3F
         "demon1-1-eyes",
         "demon1-2-eyes",
         "demon1-3-eyes",
@@ -2437,7 +2437,7 @@ static uint8_t resource_init_last (void *context)
         "demon1-30-eyes",
         "demon1-31-eyes",
         "demon1-32-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 40
         "demon1-1",
         "demon1-2",
         "demon1-3",
@@ -2470,7 +2470,7 @@ static uint8_t resource_init_last (void *context)
         "demon1-30",
         "demon1-31",
         "demon1-32",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 41
         "funguy-1",
         "funguy-2",
         "funguy-3",
@@ -2503,7 +2503,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 42
         "orbagloop-1",
         "orbagloop-2",
         "orbagloop-3",
@@ -2536,7 +2536,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 43
         "sploob-1",
         "sploob-2",
         "sploob-3",
@@ -2569,7 +2569,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 44
         0,
         0,
         0,
@@ -2602,7 +2602,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 45
         0,
         0,
         0,
@@ -2635,7 +2635,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 46
         0,
         0,
         0,
@@ -2668,7 +2668,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 47
         "slime-1-1",
         "slime-1-2",
         "slime-1-3",
@@ -2701,7 +2701,7 @@ static uint8_t resource_init_last (void *context)
         "slime-1-14-eyes",
         "slime-1-15-eyes",
         "slime-1-16-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 48
         "slime-2-1",
         "slime-2-2",
         "slime-2-3",
@@ -2734,7 +2734,7 @@ static uint8_t resource_init_last (void *context)
         "slime-2-14-eyes",
         "slime-2-15-eyes",
         "slime-2-16-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 49
         "slime-3-1",
         "slime-3-2",
         "slime-3-3",
@@ -2767,7 +2767,7 @@ static uint8_t resource_init_last (void *context)
         "slime-3-14-eyes",
         "slime-3-15-eyes",
         "slime-3-16-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 4A
         "slime-4-1",
         "slime-4-2",
         "slime-4-3",
@@ -2800,7 +2800,7 @@ static uint8_t resource_init_last (void *context)
         "slime-4-14-eyes",
         "slime-4-15-eyes",
         "slime-4-16-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 4B
         "baby-squidling1-eyes",
         "baby-squidling2-eyes",
         "baby-squidling3-eyes",
@@ -2833,7 +2833,7 @@ static uint8_t resource_init_last (void *context)
         "baby-squidling30-eyes",
         "baby-squidling31-eyes",
         "baby-squidling32-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 4C
         "baby-squidling1",
         "baby-squidling2",
         "baby-squidling3",
@@ -2866,7 +2866,7 @@ static uint8_t resource_init_last (void *context)
         "baby-squidling30",
         "baby-squidling31",
         "baby-squidling32",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 4D
         "ghost1a-right",
         "ghost1a-br",
         "ghost1a-down",
@@ -2899,7 +2899,7 @@ static uint8_t resource_init_last (void *context)
         "ghost1d-tl",
         "ghost1d-up",
         "ghost1d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 4E
         "ghost2a-right",
         "ghost2a-br",
         "ghost2a-down",
@@ -2932,7 +2932,7 @@ static uint8_t resource_init_last (void *context)
         "ghost2d-tl",
         "ghost2d-up",
         "ghost2d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 4F
         "ghost3a-right",
         "ghost3a-br",
         "ghost3a-down",
@@ -2965,7 +2965,7 @@ static uint8_t resource_init_last (void *context)
         "ghost3d-tl",
         "ghost3d-up",
         "ghost3d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 50
         "ghost4a-right",
         "ghost4a-br",
         "ghost4a-down",
@@ -2998,7 +2998,7 @@ static uint8_t resource_init_last (void *context)
         "ghost4d-tl",
         "ghost4d-up",
         "ghost4d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 51
         "ghost1a-right-eyes",
         "ghost1a-br-eyes",
         "ghost1a-down-eyes",
@@ -3031,7 +3031,7 @@ static uint8_t resource_init_last (void *context)
         "ghost1d-tl-eyes",
         "ghost1d-up-eyes",
         "ghost1d-tr-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 52
         "ghost2a-right-eyes",
         "ghost2a-br-eyes",
         "ghost2a-down-eyes",
@@ -3064,7 +3064,7 @@ static uint8_t resource_init_last (void *context)
         "ghost2d-tl-eyes",
         "ghost2d-up-eyes",
         "ghost2d-tr-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 53
         "ghost3a-right-eyes",
         "ghost3a-br-eyes",
         "ghost3a-down-eyes",
@@ -3097,7 +3097,7 @@ static uint8_t resource_init_last (void *context)
         "ghost3d-tl-eyes",
         "ghost3d-up-eyes",
         "ghost3d-tr-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 54
         "ghost4a-right-eyes",
         "ghost4a-br-eyes",
         "ghost4a-down-eyes",
@@ -3130,7 +3130,7 @@ static uint8_t resource_init_last (void *context)
         "ghost4d-tl-eyes",
         "ghost4d-up-eyes",
         "ghost4d-tr-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 55
         "eyebawla-right",
         "eyebawla-br",
         "eyebawla-down",
@@ -3163,7 +3163,7 @@ static uint8_t resource_init_last (void *context)
         "eyebawld-tl",
         "eyebawld-up",
         "eyebawld-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 56
         "eyebawla-right-eyes",
         "eyebawla-br-eyes",
         "eyebawla-down-eyes",
@@ -3196,7 +3196,7 @@ static uint8_t resource_init_last (void *context)
         "eyebawld-tl-eyes",
         "eyebawld-up-eyes",
         "eyebawld-tr-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 57
         "death1-right",
         "death1-br",
         "death1-down",
@@ -3229,7 +3229,7 @@ static uint8_t resource_init_last (void *context)
         "death1-tl4",
         "death1-up4",
         "death1-tr4",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 58
         "sorceror-right",
         "sorceror-br",
         "sorceror-down",
@@ -3262,7 +3262,7 @@ static uint8_t resource_init_last (void *context)
         "sorceror-tl4",
         "sorceror-up4",
         "sorceror-tr4",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 59
         "gobblera-right",
         "gobblera-br",
         "gobblera-down",
@@ -3295,7 +3295,7 @@ static uint8_t resource_init_last (void *context)
         "gobblerd-tl",
         "gobblerd-up",
         "gobblerd-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 5A
         "gobblera-right-eyes",
         "gobblera-br-eyes",
         "gobblera-down-eyes",
@@ -3328,7 +3328,7 @@ static uint8_t resource_init_last (void *context)
         "gobblerd-tl-eyes",
         "gobblerd-up-eyes",
         "gobblerd-tr-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 5B
         "zombie1a-right",
         "zombie1a-br",
         "zombie1a-down",
@@ -3361,7 +3361,7 @@ static uint8_t resource_init_last (void *context)
         "zombie1d-tl",
         "zombie1d-up",
         "zombie1d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 5C
         "zombie2a-right",
         "zombie2a-br",
         "zombie2a-down",
@@ -3394,7 +3394,7 @@ static uint8_t resource_init_last (void *context)
         "zombie2d-tl",
         "zombie2d-up",
         "zombie2d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 5D
         "zombie3a-right",
         "zombie3a-br",
         "zombie3a-down",
@@ -3427,7 +3427,7 @@ static uint8_t resource_init_last (void *context)
         "zombie3d-tl",
         "zombie3d-up",
         "zombie3d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 5E
         "zombie4a-right",
         "zombie4a-br",
         "zombie4a-down",
@@ -3460,7 +3460,7 @@ static uint8_t resource_init_last (void *context)
         "zombie4d-tl",
         "zombie4d-up",
         "zombie4d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 5F
         "zombie5a-right",
         "zombie5a-br",
         "zombie5a-down",
@@ -3493,7 +3493,7 @@ static uint8_t resource_init_last (void *context)
         "zombie5d-tl",
         "zombie5d-up",
         "zombie5d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 60
         "orc1a-right",
         "orc1a-br",
         "orc1a-down",
@@ -3526,7 +3526,7 @@ static uint8_t resource_init_last (void *context)
         "orc1d-tl",
         "orc1d-up",
         "orc1d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 61
         "orc2a-right",
         "orc2a-br",
         "orc2a-down",
@@ -3559,7 +3559,7 @@ static uint8_t resource_init_last (void *context)
         "orc2d-tl",
         "orc2d-up",
         "orc2d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 62
         "orc3a-right",
         "orc3a-br",
         "orc3a-down",
@@ -3592,7 +3592,7 @@ static uint8_t resource_init_last (void *context)
         "orc3d-tl",
         "orc3d-up",
         "orc3d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 63
         "orc4a-right",
         "orc4a-br",
         "orc4a-down",
@@ -3625,7 +3625,7 @@ static uint8_t resource_init_last (void *context)
         "orc4d-tl",
         "orc4d-up",
         "orc4d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 64
         "orc5a-right",
         "orc5a-br",
         "orc5a-down",
@@ -3658,7 +3658,7 @@ static uint8_t resource_init_last (void *context)
         "orc5d-tl",
         "orc5d-up",
         "orc5d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 65
         "trap1-1",
         "trap1-2",
         "trap1-3",
@@ -3691,7 +3691,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 66
         "skeleton1a-right",
         "skeleton1a-br",
         "skeleton1a-down",
@@ -3724,7 +3724,7 @@ static uint8_t resource_init_last (void *context)
         "skeleton1d-tl",
         "skeleton1d-up",
         "skeleton1d-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 67
         "plantpod1-1",
         "plantpod1-2",
         "plantpod1-3",
@@ -3757,7 +3757,7 @@ static uint8_t resource_init_last (void *context)
         "juggernaut.8",
         "juggernaut.9",
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 68
         "zombie1-corpse1",
         "zombie1-corpse2",
         "zombie1-corpse3",
@@ -3790,7 +3790,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 69
         "shopkeepera-right",
         "shopkeepera-br",
         "shopkeepera-down",
@@ -3823,7 +3823,7 @@ static uint8_t resource_init_last (void *context)
         "shopkeeperd-tl",
         "shopkeeperd-up",
         "shopkeeperd-tr",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 6A
         "mudman1",
         "mudman2",
         "mudman3",
@@ -3856,7 +3856,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 6B
         "wizard-right",
         "wizard-br",
         "wizard-down",
@@ -3889,7 +3889,7 @@ static uint8_t resource_init_last (void *context)
         "wizard-tl4",
         "wizard-up4",
         "wizard-tr4",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 6C
         "elf-right",
         "elf-br",
         "elf-down",
@@ -3922,7 +3922,7 @@ static uint8_t resource_init_last (void *context)
         "elf-tl4",
         "elf-up4",
         "elf-tr4",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 6D
         "dwarf-right",
         "dwarf-br",
         "dwarf-down",
@@ -3955,7 +3955,7 @@ static uint8_t resource_init_last (void *context)
         "dwarf-tl4",
         "dwarf-up4",
         "dwarf-tr4",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 6E
         "warrior-right",
         "warrior-br",
         "warrior-down",
@@ -3988,7 +3988,7 @@ static uint8_t resource_init_last (void *context)
         "warrior-tl4",
         "warrior-up4",
         "warrior-tr4",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 6F
         "valkyrie-right",
         "valkyrie-br",
         "valkyrie-down",
@@ -4021,7 +4021,7 @@ static uint8_t resource_init_last (void *context)
         "valkyrie-tl4",
         "valkyrie-up4",
         "valkyrie-tr4",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 70
         "wizard-right-eyes",
         "wizard-br-eyes",
         "wizard-down-eyes",
@@ -4054,7 +4054,7 @@ static uint8_t resource_init_last (void *context)
         "wizard-tl4-eyes",
         "wizard-up4-eyes",
         "wizard-tr4-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 71
         "elf-right-eyes",
         "elf-br-eyes",
         "elf-down-eyes",
@@ -4087,7 +4087,7 @@ static uint8_t resource_init_last (void *context)
         "elf-tl4-eyes",
         "elf-up4-eyes",
         "elf-tr4-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 72
         "dwarf-right-eyes",
         "dwarf-br-eyes",
         "dwarf-down-eyes",
@@ -4120,7 +4120,7 @@ static uint8_t resource_init_last (void *context)
         "dwarf-tl4-eyes",
         "dwarf-up4-eyes",
         "dwarf-tr4-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 73
         "warrior-right-eyes",
         "warrior-br-eyes",
         "warrior-down-eyes",
@@ -4153,7 +4153,7 @@ static uint8_t resource_init_last (void *context)
         "warrior-tl4-eyes",
         "warrior-up4-eyes",
         "warrior-tr4-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 74
         "valkyrie-right-eyes",
         "valkyrie-br-eyes",
         "valkyrie-down-eyes",
@@ -4186,7 +4186,7 @@ static uint8_t resource_init_last (void *context)
         "valkyrie-tl4-eyes",
         "valkyrie-up4-eyes",
         "valkyrie-tr4-eyes",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 75
         "sword1.1",
         "sword1.2",
         "sword1.3",
@@ -4219,7 +4219,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 76
         "sword2.1",
         "sword2.2",
         "sword2.3",
@@ -4252,7 +4252,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 77
         "sword3.1",
         "sword3.2",
         "sword3.3",
@@ -4285,7 +4285,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 78
         "sword4.1",
         "sword4.2",
         "sword4.3",
@@ -4318,7 +4318,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 79
         "sword5.1",
         "sword5.2",
         "sword5.3",
@@ -4351,7 +4351,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 7A
         "sword6.1",
         "sword6.2",
         "sword6.3",
@@ -4384,7 +4384,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 7B
         "scythe1.1",
         "scythe1.2",
         "scythe1.3",
@@ -4417,7 +4417,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 7C
         "wand1_anim.1",
         "wand1_anim.2",
         "wand1_anim.3",
@@ -4450,7 +4450,7 @@ static uint8_t resource_init_last (void *context)
         "wand4_anim.6",
         "wand4_anim.7",
         "wand4_anim.8",
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 7D
         "bow1.1",
         "bow1.2",
         "bow1.3",
@@ -4483,7 +4483,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 7E
         "axe1.1",
         "axe1.2",
         "axe1.3",
@@ -4516,7 +4516,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        // --------------------------------------------------------------------
+        // -------------------------------------------------------------------- 7F
         "axe2.1",
         "axe2.2",
         "axe2.3",
@@ -5769,7 +5769,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("explosion", 
                   0,
-                  128, 128,
+                  64, 64,
                   ARRAY_SIZE(explosion_tiles), explosion_tiles);
 
     static const char *cloudkill_tiles[] = {
@@ -5841,7 +5841,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("cloudkill", 
                   0,
-                  128, 128,
+                  64, 64,
                   ARRAY_SIZE(cloudkill_tiles), cloudkill_tiles);
 
     static const char *poison_tiles[] = {
@@ -5914,7 +5914,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("poison", 
                   0,
-                  128, 128,
+                  64, 64,
                   ARRAY_SIZE(poison_tiles), poison_tiles);
 
     static const char *sawblade_tiles[] = {
@@ -5939,7 +5939,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("sawblade", 
                   0,
-                  128, 128,
+                  64, 64,
                   ARRAY_SIZE(sawblade_tiles), sawblade_tiles);
 
     static const char *sawblade2_tiles[] = {
@@ -5964,7 +5964,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("sawblade2", 
                   0,
-                  128, 128,
+                  64, 64,
                   ARRAY_SIZE(sawblade2_tiles), sawblade2_tiles);
 
     static const char *sawblade3_tiles[] = {
@@ -5989,7 +5989,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("sawblade3", 
                   0,
-                  128, 128,
+                  64, 64,
                   ARRAY_SIZE(sawblade3_tiles), sawblade3_tiles);
 
     static const char *sawblade4_tiles[] = {
@@ -6014,7 +6014,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("sawblade4", 
                   0,
-                  128, 128,
+                  64, 64,
                   ARRAY_SIZE(sawblade4_tiles), sawblade4_tiles);
 
     static const char *sawblade5_tiles[] = {
@@ -6039,7 +6039,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("sawblade5", 
                   0,
-                  128, 128,
+                  64, 64,
                   ARRAY_SIZE(sawblade5_tiles), sawblade5_tiles);
 
 #if 0
@@ -6091,7 +6091,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("anim_treasure_chest", 
                   0, /* black and white */
-                  256, 256,
+                  128, 128,
                   ARRAY_SIZE(anim_treasure_chest_tiles), anim_treasure_chest_tiles);
 
     static const char *anim_eyes_tiles[] = {
@@ -6141,7 +6141,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("crystalball", 
                   0, /* black and white */
-                  256, 256,
+                  128, 128,
                   ARRAY_SIZE(crystalball_tiles), 
                   crystalball_tiles);
 
@@ -6183,7 +6183,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("shield1", 
                   0, /* black and white */
-                  256, 256,
+                  64, 64,
                   ARRAY_SIZE(shield1_tiles), 
                   shield1_tiles);
 
@@ -6225,7 +6225,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("magic_cloud", 
                   0, /* black and white */
-                  256, 256,
+                  64, 64,
                   ARRAY_SIZE(magic_cloud_tiles), 
                   magic_cloud_tiles);
 
@@ -6267,7 +6267,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("death_cloud", 
                   0, /* black and white */
-                  128, 128,
+                  64, 64,
                   ARRAY_SIZE(death_cloud_tiles), 
                   death_cloud_tiles);
 
@@ -6278,7 +6278,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("jesus", 
                   0, /* black and white */
-                  512, 512,
+                  256, 256,
                   ARRAY_SIZE(jesus_tiles), 
                   jesus_tiles);
 
@@ -6352,7 +6352,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("teleport", 
                   0, /* black and white */
-                  128, 128,
+                  32, 32,
                   ARRAY_SIZE(teleport_tiles), 
                   teleport_tiles);
 
@@ -6394,7 +6394,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("ring_cloud", 
                   0, /* black and white */
-                  256, 256,
+                  64, 64,
                   ARRAY_SIZE(ring_cloud_tiles), 
                   ring_cloud_tiles);
 
@@ -6631,6 +6631,7 @@ static uint8_t resource_init_last (void *context)
         "rock7.20",
         "rock7.21",
         // --------------------------------------------------------------------
+/*        0,
         0,
         0,
         0,
@@ -6661,8 +6662,7 @@ static uint8_t resource_init_last (void *context)
         0,
         0,
         0,
-        0,
-        0,
+        0,*/
         // --------------------------------------------------------------------
         "brazier1",
         "brazier2",
@@ -6752,7 +6752,7 @@ static uint8_t resource_init_last (void *context)
 
     tile_load_arr("crystalball_purple", 
                   0, /* black and white */
-                  256, 256,
+                  128, 128,
                   ARRAY_SIZE(crystalball_purple_tiles), 
                   crystalball_purple_tiles);
 
