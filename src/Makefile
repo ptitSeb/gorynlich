@@ -1,9 +1,11 @@
-CFLAGS = -mcpu=cortex-a8 -mfpu=neon -mfloat-abi=softfp
+CFLAGS = -mcpu=cortex-a8 -mfpu=neon -mfloat-abi=softfp -DPANDORA
 CFLAGS += -ffast-math -fsingle-precision-constant -ftree-vectorize
 CFLAGS += -O3 `sdl-config --cflags` -DDouble=float 
-CFLAGS += -g -flto -flto-odr-type-merging
+#CFLAGS += -g -flto -flto-odr-type-merging
+CFLAGS += -g
 #CFLAGS += -DDouble=double
-LDLIBS = -O3 -flto `sdl-config --libs` -lSDL_mixer -lSDL_net -lm -lGL
+#LDLIBS = -O3 -flto 
+LDLIBS += `sdl-config --libs` -lSDL_mixer -lSDL_net -lm -lGL
 LDLIBS += -lrt
 CC = gcc
 NAME=gorynlich
