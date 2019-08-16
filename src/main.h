@@ -6,8 +6,6 @@
 
 #pragma once
 
-#pragma once
-
 #include <stdio.h>
 #include <stdint.h>
 #include <assert.h>
@@ -21,8 +19,6 @@
 
 #ifdef NEON
  #include <arm_neon.h>
-#else
- #error KO
 #endif
 
 #ifdef __GNUC__
