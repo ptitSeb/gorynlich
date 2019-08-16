@@ -132,7 +132,7 @@ static SDL_Surface *load_image (const char *filename)
         DIE("could not read memory for file, %s", filename);
     }
 
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+#if 0//SDL_BYTEORDER == SDL_BIG_ENDIAN
     rmask = 0xff000000;
     gmask = 0x00ff0000;
     bmask = 0x0000ff00;
@@ -175,7 +175,7 @@ static int load_image_twice (const char *filename,
         DIE("could not read memory for file, %s", filename);
     }
 
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+#if 0//SDL_BYTEORDER == SDL_BIG_ENDIAN
     rmask = 0xff000000;
     gmask = 0x00ff0000;
     bmask = 0x0000ff00;
@@ -538,7 +538,7 @@ texp tex_from_tiled_surface (SDL_Surface *in,
 
     uint32_t rmask, gmask, bmask, amask;
 
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+#if 0//SDL_BYTEORDER == SDL_BIG_ENDIAN
     rmask = 0xff000000;
     gmask = 0x00ff0000;
     bmask = 0x0000ff00;
@@ -678,7 +678,7 @@ static texp tex_black_and_white (SDL_Surface *in,
 
     uint32_t rmask, gmask, bmask, amask;
 
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+#if 0//SDL_BYTEORDER == SDL_BIG_ENDIAN
     rmask = 0xff000000;
     gmask = 0x00ff0000;
     bmask = 0x0000ff00;

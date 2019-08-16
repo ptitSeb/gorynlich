@@ -159,6 +159,7 @@
 //     stbi_is_hdr(char *filename);
 
 #ifndef STBI_NO_STDIO
+#include <string.h>
 #endif
 
 #define STBI_VERSION 1

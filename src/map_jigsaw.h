@@ -45,7 +45,7 @@
  * |xxxxxxxxx|
  * +---------+
  */
-#ifdef NEON
+#if defined(PANDORA) || defined(__amigaos4__)
 #define JIGPIECE_MAX                    10000
 #else
 #define JIGPIECE_MAX                    20000

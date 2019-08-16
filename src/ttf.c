@@ -651,6 +651,14 @@ ttf_create_tex_from_char (TTF_Font *ttf, const char *name, font *f, uint8_t c)
 }
 #endif
 
+#ifdef __amigaos4__
+static double SwapDouble(double a)
+{
+    Uint64 r = SDL_SwapLE64(*(Uint64*)&a);
+    return *(double*)&r;
+}
+#endif
+
 font *
 ttf_read_tga (char *name, int32_t pointsize)
 {
@@ -684,6 +692,23 @@ ttf_read_tga (char *name, int32_t pointsize)
     }
 
     memcpy(f->glyphs, glyph_data, sizeof(f->glyphs));
+#ifdef __BIG_ENDIAN__
+   int r;
+   for (r = 0; r <= TTF_GLYPH_MAX; r++)
+   {
+            f->glyphs[r].width = SwapDouble(f->glyphs[r].width);
+            f->glyphs[r].height = SwapDouble(f->glyphs[r].height);
+            f->glyphs[r].minx = SwapDouble(f->glyphs[r].minx);
+            f->glyphs[r].maxx = SwapDouble(f->glyphs[r].maxx);
+            f->glyphs[r].miny = SwapDouble(f->glyphs[r].miny);
+            f->glyphs[r].maxy = SwapDouble(f->glyphs[r].maxy);
+            f->glyphs[r].advance = SwapDouble(f->glyphs[r].advance);
+            f->glyphs[r].texMinX = SwapDouble(f->glyphs[r].texMinX);
+            f->glyphs[r].texMaxX = SwapDouble(f->glyphs[r].texMaxX);
+            f->glyphs[r].texMinY = SwapDouble(f->glyphs[r].texMinY);
+            f->glyphs[r].texMaxY = SwapDouble(f->glyphs[r].texMaxY);
+   }						
+#endif
 
     snprintf(filename, sizeof(filename), "%s_pointsize%u.tga",
              name, pointsize);

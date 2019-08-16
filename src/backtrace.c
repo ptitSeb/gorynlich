@@ -4,7 +4,7 @@
  * See the README file for license info for license.
  */
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
 #include <execinfo.h>
 #endif
 #include <stdlib.h>
@@ -22,7 +22,7 @@ typedef struct traceback_ {
 
 void backtrace_print (void)
 {
-#ifndef WIN32
+#if !defined(WIN32) && !defined(__amigaos4__)
     void *array[10];
     int32_t size;
     char **strings;
@@ -49,7 +49,7 @@ void backtrace_print (void)
  */
 traceback *traceback_alloc (void)
 {
-#ifndef WIN32
+#if !defined(WIN32) && !defined(__amigaos4__)
     traceback *tb;
 
     tb = (typeof(tb)) malloc(sizeof(*tb));
@@ -67,7 +67,7 @@ traceback *traceback_alloc (void)
  */
 void traceback_free (traceback *tb)
 {
-#ifndef WIN32
+#if !defined(WIN32) && !defined(__amigaos4__)
     free(tb);
 #endif
 }
@@ -77,7 +77,7 @@ void traceback_free (traceback *tb)
  */
 void traceback_stdout (traceback *tb)
 {
-#ifndef WIN32
+#if !defined(WIN32) && !defined(__amigaos4__)
     uint32_t i;
     char **strings;
 
@@ -100,7 +100,7 @@ void traceback_stdout (traceback *tb)
  */
 void traceback_stderr (traceback *tb)
 {
-#ifndef WIN32
+#if !defined(WIN32) && !defined(__amigaos4__)
     uint32_t i;
     char **strings;
 

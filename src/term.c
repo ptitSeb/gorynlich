@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <signal.h>
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
 #include <sys/termios.h>
 #include <sys/ioctl.h>
 #endif
@@ -36,7 +36,7 @@ int enable_console = 1;
 int enable_console = 0;
 #endif
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
 static void term_core_refresh(void);
 
 int TERM_WIDTH = TERM_MAX_SIZE;
@@ -61,7 +61,7 @@ static uint8_t term_init_done;
 static struct termios term_original_settings;
 #endif
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
 static void term_core_exit (void)
 {
     static uint8_t exitting;
@@ -128,7 +128,7 @@ static void term_core_goto_init (void)
 
 uint8_t term_init (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     if (!HEADLESS && !enable_console) {
         return (true);
     }
@@ -161,7 +161,7 @@ uint8_t term_init (void)
 
 void term_fini (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     FINI_LOG("%s", __FUNCTION__);
 
     if (term_init_done) {
@@ -179,7 +179,7 @@ void term_fini (void)
 #endif
 }
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
 static void term_core_putc (const char c)
 {
     term_core_buffer[term_core_buffer_pos++] = c;
@@ -325,28 +325,28 @@ static inline void term_puts_fgbg (unsigned char fg, unsigned char bg)
 
 void term_core_cursor_show (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_core_puts("\033[?25h");
 #endif
 }
 
 void term_core_cursor_hide (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_core_puts("\033[?25l");
 #endif
 }
 
 void term_core_goto (int x, int y)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_core_puts(term_core_goto_data[x][y]);
 #endif
 }
 
 void term_core_cls (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_core_refresh();
 
     //
@@ -360,12 +360,12 @@ void term_core_cls (void)
 
 void term_core_bell (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_core_puts("\007");
 #endif
 }
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
 static void term_put (term_cell *e)
 {
     if (term_cursor_move_only) {
@@ -405,14 +405,14 @@ static void term_put (term_cell *e)
 
 void term_cursor_right (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_x++;
 #endif
 }
 
 void term_putc (const char c)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_cell e = {0};
 
     e.c = c; 
@@ -425,7 +425,7 @@ void term_putc (const char c)
 
 void term_puts (const char* s)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     char c;
 
     while ((c = *s++) != '\0') {
@@ -436,7 +436,7 @@ void term_puts (const char* s)
 
 void term_fill_c (const char c)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     int x, y;
 
     for (x = 0; x < TERM_WIDTH; x++) {
@@ -450,7 +450,7 @@ void term_fill_c (const char c)
 
 void term_scroll (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     int x, y;
 
     for (x = 0; x < TERM_WIDTH; x++) {
@@ -473,7 +473,7 @@ void term_scroll (void)
 
 void term_fill_fg (const term_color fg)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     int x, y;
 
     for (x = 0; x < TERM_WIDTH; x++) {
@@ -487,7 +487,7 @@ void term_fill_fg (const term_color fg)
 
 void term_fill_bg (const term_color bg)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     int x, y;
 
     for (x = 0; x < TERM_WIDTH; x++) {
@@ -501,21 +501,21 @@ void term_fill_bg (const term_color bg)
 
 void term_fg (term_color fg)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_fg_current = fg;
 #endif
 }
 
 void term_bg (term_color bg)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_bg_current = bg;
 #endif
 }
 
 void term_fgbg (term_color fg, term_color bg)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_fg_current = fg;
     term_bg_current = bg;
 #endif
@@ -523,7 +523,7 @@ void term_fgbg (term_color fg, term_color bg)
 
 void term_goto (int x, int y)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_x = x;
     term_y = y;
 #endif
@@ -531,35 +531,35 @@ void term_goto (int x, int y)
 
 void term_cursor_show (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_core_cursor_show();
 #endif
 }
 
 void term_cursor_hide (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_core_cursor_hide();
 #endif
 }
 
 void term_bell (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_core_bell();
 #endif
 }
 
 void term_cls (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_fill_c(' ');
 #endif
 }
 
 void term_cls_now (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_cls();
 
     term_refresh();
@@ -570,19 +570,19 @@ void term_cls_now (void)
 
 void term_clear_buffer (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     memset(term_cells, 0, sizeof(term_cells));
 #endif
 }
 
 void term_clear_bbuffer (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     memset(term_bcells, 0, sizeof(term_bcells));
 #endif
 }
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
 static term_color term_color_string_to_index (const char **s)
 {
     if (!strncmp(*s, "black$", sizeof("black$")-1)) {
@@ -628,7 +628,7 @@ static term_color term_color_string_to_index (const char **s)
 
 void term_putf (const char *s)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     char c;
     uint8_t looking_for_start = false;
 
@@ -667,7 +667,7 @@ void term_putf (const char *s)
 
 void term_putfy (int y, const char *s)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_goto(0, y);
 
     term_cursor_move_only = true;
@@ -681,14 +681,14 @@ void term_putfy (int y, const char *s)
 
 void term_putfmx (const char *s)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     term_putfy(term_y, s);
 #endif
 }
 
 void term_refresh (void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     if (!term_init_done) {
         return;
     }
@@ -763,7 +763,7 @@ void term_refresh (void)
 
 int term_test (int32_t argc, char *argv[])
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     int x, y;
 
     int r = 0;
@@ -803,7 +803,7 @@ int term_test (int32_t argc, char *argv[])
     return (0);
 }
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
 static void term_print_last_line (void)
 {
     int x, y;
@@ -830,7 +830,7 @@ static void term_print_last_line (void)
 
 void term_log (const char *buf)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
     if (HEADLESS || enable_console) {
         term_scroll();
         term_goto(0, TERM_HEIGHT - 2);
@@ -856,7 +856,7 @@ void term_log (const char *buf)
 int
 get_term_size (int fd, int *x, int *y)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos4__)
 #ifdef TIOCGSIZE
     struct ttysize win;
 

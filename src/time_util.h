@@ -69,7 +69,7 @@ static inline uint32_t time_update_time_milli (void)
     extern uint8_t sdl_main_loop_running;
 
     if (unlikely(!sdl_main_loop_running || !sdl_init_video || HEADLESS)) {
-#if 1
+#ifdef PANDORA
 	struct timespec ts;
 
 	clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
@@ -100,7 +100,7 @@ static inline uint32_t time_update_time_milli (void)
 
 static inline uint32_t time_get_time_milli (void)
 {
-#if 1
+#ifdef PANDORA
     struct timespec ts;
 
     clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
