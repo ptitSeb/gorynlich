@@ -2167,7 +2167,7 @@ static void maze_add_decorations (void)
     }
 
     LOG("Maze: Added borders:");
-    map_jigsaw_buffer_print_file(MY_STDOUT);
+    //map_jigsaw_buffer_print_file(MY_STDOUT);
 
     for (x = 1; x < MAP_WIDTH - 1; x++) {
         for (y = 1; y < MAP_HEIGHT - 1; y++) {
@@ -2188,7 +2188,7 @@ static void maze_add_decorations (void)
     }
 
     LOG("Maze: Added corridor walls:");
-    map_jigsaw_buffer_print_file(MY_STDOUT);
+    //map_jigsaw_buffer_print_file(MY_STDOUT);
 
     /*
      * Make sure all floor tiles have a wall around them.
@@ -2212,7 +2212,7 @@ static void maze_add_decorations (void)
     }
 
     LOG("Maze: Added walls around floor tiles:");
-    map_jigsaw_buffer_print_file(MY_STDOUT);
+    //map_jigsaw_buffer_print_file(MY_STDOUT);
 
     /*
      * Extra thick walls.
@@ -2245,7 +2245,7 @@ static void maze_add_decorations (void)
 
             if (depth) {
                 LOG("Maze: Added thick walls:");
-                map_jigsaw_buffer_print_file(MY_STDOUT);
+                //map_jigsaw_buffer_print_file(MY_STDOUT);
             }
         }
     }
@@ -2524,7 +2524,7 @@ static void maze_convert_to_map (dungeon_t *dg)
 {
     dump_jigpieces_to_map(dg);
     LOG("Maze: Added maze pieces:");
-    map_jigsaw_buffer_print_file(MY_STDOUT);
+    //map_jigsaw_buffer_print_file(MY_STDOUT);
 
     jigpiece_create_mirrored_frag(dg);
 
@@ -2534,7 +2534,7 @@ static void maze_convert_to_map (dungeon_t *dg)
      * Add this before fragments
      */
     LOG("Maze: Added corridor walls:");
-    map_jigsaw_buffer_print_file(MY_STDOUT);
+    //map_jigsaw_buffer_print_file(MY_STDOUT);
 
     int x, y, dx, dy;
 
@@ -2559,7 +2559,7 @@ static void maze_convert_to_map (dungeon_t *dg)
     jigpiece_add_triggers(dg);
 
     LOG("Maze: Added triggers:");
-    map_jigsaw_buffer_print_file(MY_STDOUT);
+    //map_jigsaw_buffer_print_file(MY_STDOUT);
 
     jigpiece_add_frag(dg);
     jigpiece_add_frag(dg);
@@ -2568,7 +2568,7 @@ static void maze_convert_to_map (dungeon_t *dg)
     jigpiece_add_frag(dg);
 
     LOG("Maze: Added fragments:");
-    map_jigsaw_buffer_print_file(MY_STDOUT);
+    //map_jigsaw_buffer_print_file(MY_STDOUT);
 
     maze_add_decorations();
 
@@ -2604,7 +2604,7 @@ static void maze_convert_to_map (dungeon_t *dg)
     }
 
     LOG("Maze: Added junk in outside of level:");
-    map_jigsaw_buffer_print_file(MY_STDOUT);
+    //map_jigsaw_buffer_print_file(MY_STDOUT);
 }
 
 /*
@@ -3084,6 +3084,17 @@ static uint8_t maze_generate_and_solve (dungeon_t *dg)
     return (true);
 }
 
+static void dungeon_reseed(dungeon_t *dg)
+{
+    fflush(MY_STDOUT);
+    maze_seed = myrand();
+    mysrand(maze_seed);
+
+    LOG("Maze: Try new seed");
+
+    memset(dg->maze, 0, sizeof(dg->maze));
+}
+
 /*
  * generate_level
  */
@@ -3130,57 +3141,44 @@ static int32_t generate_level (levelp level,
     jigpiece_create_mirrored_pieces(dg);
     jigpiece_create_exits(dg);
 
-    for (;;) {
+    int generating = 1;
+    do {
         if (!maze_generate_and_solve(dg)) {
             LOG("Maze: Generate failed, cannot generate:");
-            goto reseed;
-        }
-
-        if (!maze_jigsaw_generate_all_possible_pieces(dg)) {
+            dungeon_reseed(dg);
+        } else if (!maze_jigsaw_generate_all_possible_pieces(dg)) {
             LOG("Maze: Generate failed, cannot generate maze pieces:");
-            map_jigsaw_buffer_print_file(MY_STDOUT);
-            goto reseed;
-        }
-
-        if (!maze_jigsaw_solve(dg)) {
+            //map_jigsaw_buffer_print_file(MY_STDOUT);
+            dungeon_reseed(dg);
+        } else if (!maze_jigsaw_solve(dg)) {
             LOG("Maze: Generate failed, cannot solve maze:");
-            map_jigsaw_buffer_print_file(MY_STDOUT);
-            goto reseed;
+            //map_jigsaw_buffer_print_file(MY_STDOUT);
+            dungeon_reseed(dg);
+        } else {
+
+            maze_convert_to_map(dg);
+
+            if (!maze_replace_room_char(MAP_START)) {
+                LOG("Maze: Generate failed, cannot place start:");
+                //map_jigsaw_buffer_print_file(MY_STDOUT);
+                dungeon_reseed(dg);
+            } else if (!maze_replace_room_char(MAP_END)) {
+                LOG("Maze: Generate failed, cannot place exit:");
+                //map_jigsaw_buffer_print_file(MY_STDOUT);
+                dungeon_reseed(dg);
+            } else {
+                LOG("Maze: Added start and exit:");
+                //map_jigsaw_buffer_print_file(MY_STDOUT);
+
+
+                if (!maze_check_exit_can_be_reached()) {
+                    LOG("Maze: Generate failed, exit cannot be reached:");
+                    //map_jigsaw_buffer_print_file(MY_STDOUT);
+                    dungeon_reseed(dg);
+                } else generating = 0;
+            }
         }
-
-        maze_convert_to_map(dg);
-
-        if (!maze_replace_room_char(MAP_START)) {
-            LOG("Maze: Generate failed, cannot place start:");
-            map_jigsaw_buffer_print_file(MY_STDOUT);
-            goto reseed;
-        }
-
-        if (!maze_replace_room_char(MAP_END)) {
-            LOG("Maze: Generate failed, cannot place exit:");
-            map_jigsaw_buffer_print_file(MY_STDOUT);
-            goto reseed;
-        }
-
-        LOG("Maze: Added start and exit:");
-        map_jigsaw_buffer_print_file(MY_STDOUT);
-
-        break;
-reseed:
-        fflush(MY_STDOUT);
-        maze_seed = myrand();
-        mysrand(maze_seed);
-
-        LOG("Maze: Try new seed");
-
-        memset(dg->maze, 0, sizeof(dg->maze));
-    }
-
-    if (!maze_check_exit_can_be_reached()) {
-        LOG("Maze: Generate failed, exit cannot be reached:");
-        map_jigsaw_buffer_print_file(MY_STDOUT);
-        goto reseed;
-    }
+    } while (generating);
 
     /*
      * Check at least 2 teleports.
@@ -3188,7 +3186,7 @@ reseed:
     maze_check_teleports();
 
     LOG("Maze: Final maze:");
-    map_jigsaw_buffer_print_file(MY_STDOUT);
+    //map_jigsaw_buffer_print_file(MY_STDOUT);
 
 #ifdef MAZE_DEBUG_SHOW_CONSOLE
     map_jigsaw_buffer_print();
