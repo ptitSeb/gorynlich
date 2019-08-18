@@ -569,6 +569,7 @@ void demarshal_thing_template (demarshal_p ctx, tpp t)
             if (t->z_depth >= MAP_DEPTH_MAX) {
                 ERR("%s/%s has unknown depth", tp_name(t), t->short_name); 
             }
+            map_depth_destroy();    // no need to keep the tree in memory
         }
 
         GET_OPT_NAMED_UINT8(ctx, "z_order", t->z_order);

@@ -761,7 +761,7 @@ color YELLOW_GREEN;
 color YELLOWGREEN;
 color YELLOW;
 
-tree_root *colors;
+tree_root *colors = NULL;
 
 static void color_set (int include_in_palette,
                        const char *name,
@@ -786,6 +786,13 @@ static void color_set (int include_in_palette,
     if (!tree_insert(colors, &val->tree.node)) {
         ERR("insert color %s", name);
     }
+}
+
+void color_fini(void)
+{
+    if(!colors)
+        return;
+    tree_destroy(&colors, NULL);
 }
 
 void color_init (void)

@@ -16,6 +16,7 @@ color string2color(const char **s);
 color color_find(const char *s);
 const char *color_find_name(const char *s);
 const char *color_find_nth(int nth);
+void color_fini(void);
 
 extern color ALICE_BLUE;
 extern color ALICEBLUE;

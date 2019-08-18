@@ -205,12 +205,15 @@ void quit (void)
         GFX_PATH = 0;
     }
 
+    color_fini();
+
 #ifdef ENABLE_LEAKCHECK
     if (!croaked) {
         ptrcheck_fini();
         LOG("  - ptrcheck_fini");
     }
 #endif
+    myfree(EXEC_DIR);
 
     term_fini();
     LOG("  - term_fini");
