@@ -710,6 +710,8 @@ ttf_read_tga (char *name, int32_t pointsize)
    }						
 #endif
 
+    myfree(glyph_data);
+
     snprintf(filename, sizeof(filename), "%s_pointsize%u.tga",
              name, pointsize);
 
