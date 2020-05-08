@@ -222,17 +222,20 @@ typedef struct maze_cell_t_ {
 
 typedef struct {
     int32_t jigpieces_cnt;
-    jigpiece_t jigpiece[JIGPIECE_MAX];
+    int32_t jigpieces_cap;
+    jigpiece_t *jigpiece;
 
     /*
      * Fragments
      */
     int32_t frag_cnt;
-    jigpiece_t frag[MAZE_FRAG_DIRECTIONS][JIGPIECE_MAX];
+    int32_t frag_cap;
+    jigpiece_t* frag[MAZE_FRAG_DIRECTIONS];
     int32_t frag_to_alt_base[JIGPIECE_MAX];
     int32_t frag_cnt_alts[JIGPIECE_MAX];
     int32_t frag_alt_cnt;
-    jigpiece_t frag_alt[MAZE_FRAG_DIRECTIONS][JIGPIECE_MAX];
+    int32_t frag_alt_cap;
+    jigpiece_t* frag_alt[MAZE_FRAG_DIRECTIONS];
 
     /*
      * Triggers
@@ -264,6 +267,56 @@ typedef struct {
     uint32_t ey;
 } dungeon_t;
 
+static dungeon_t* new_dungeon()
+{
+    dungeon_t *dg = (typeof(dg)) myzalloc(sizeof(*dg), __FUNCTION__);
+
+    return dg;
+}
+static void delete_dungeon(dungeon_t *dg)
+{
+    if(!dg) return;
+    myfree(dg->jigpiece);
+    for (int i=0; i<MAZE_FRAG_DIRECTIONS; ++i) {
+        myfree(dg->frag[i]);
+        myfree(dg->frag_alt[i]);
+    }
+    myfree(dg);
+}
+static void dungeon_resize_jigpiece(dungeon_t *dg, int32_t n)
+{
+    if(dg->jigpieces_cap>n)
+        return;
+    int old = dg->jigpieces_cap;
+    dg->jigpieces_cap += 10;
+    dg->jigpiece = (jigpiece_t*) myrealloc(dg->jigpiece, dg->jigpieces_cap*sizeof(jigpiece_t), __FUNCTION__);
+    for (int i=old; i<dg->jigpieces_cap; ++i)
+        memset(dg->jigpiece+i, 0, sizeof(jigpiece_t));
+}
+static void dungeon_resize_frag(dungeon_t *dg, int32_t n)
+{
+    if(dg->frag_cap>n)
+        return;
+    int old = dg->frag_cap;
+    dg->frag_cap += 10;
+    for(int i=0; i<MAZE_FRAG_DIRECTIONS; ++i) {
+        dg->frag[i] = (jigpiece_t*) myrealloc(dg->frag[i], dg->frag_cap*sizeof(jigpiece_t), __FUNCTION__);
+        for (int j=old; j<dg->frag_cap; ++j)
+            memset(&dg->frag[i][j], 0, sizeof(jigpiece_t));
+    }
+}
+static void dungeon_resize_frag_alt(dungeon_t *dg, int32_t n)
+{
+    if(dg->frag_alt_cap>n)
+        return;
+    int old = dg->frag_alt_cap;
+    dg->frag_alt_cap += 10;
+    for(int i=0; i<MAZE_FRAG_DIRECTIONS; ++i) {
+        dg->frag_alt[i] = (jigpiece_t*) myrealloc(dg->frag_alt[i], dg->frag_alt_cap*sizeof(jigpiece_t), __FUNCTION__);
+        for (int j=old; j<dg->frag_alt_cap; ++j)
+            memset(&dg->frag_alt[i][j], 0, sizeof(jigpiece_t));
+    }
+}
 /*
  * Globals:
  */
@@ -700,6 +753,7 @@ static void jigpieces_read (dungeon_t *dg, char *buf)
                     }
 
                     if (reading_jigpieces) {
+                        dungeon_resize_jigpiece(dg, dg->jigpieces_cnt + n);
                         dg->jigpiece[dg->jigpieces_cnt + n].c[x][y] = *c;
                         dg->jigpiece[dg->jigpieces_cnt + n].rotatable = 
                                         jigpiece_rotatable;
@@ -709,6 +763,7 @@ static void jigpieces_read (dungeon_t *dg, char *buf)
                                         jigpiece_vert_flip;
 
                     } else if (reading_frag) {
+                        dungeon_resize_frag(dg, dg->frag_cnt + n);
                         dg->frag[0][dg->frag_cnt + n].c[x][y] = *c;
                         dg->frag[0][dg->frag_cnt + n].rotatable = 
                                         jigpiece_rotatable;
@@ -718,6 +773,7 @@ static void jigpieces_read (dungeon_t *dg, char *buf)
                                         jigpiece_vert_flip;
 
                     } else if (reading_frag_alt) {
+                        dungeon_resize_frag_alt(dg, dg->frag_alt_cnt + n);
                         dg->frag_alt[0][dg->frag_alt_cnt + n].c[x][y] = *c;
                         dg->frag_alt[0][dg->frag_alt_cnt + n].rotatable = 
                                         jigpiece_rotatable;
@@ -1704,7 +1760,7 @@ static void jigpiece_create_mirrored_pieces (dungeon_t *dg)
              */
             if (dg->jigpieces_cnt >= JIGPIECE_MAX) {
                 ERR("Too many jigpiece to mirror");
-            }
+            } else dungeon_resize_jigpiece(dg, dg->jigpieces_cnt+1);
 
             for (x = 0; x < JIGPIECE_WIDTH; x++) {
                 for (y = 0; y < JIGPIECE_HEIGHT; y++) {
@@ -1729,7 +1785,7 @@ static void jigpiece_create_mirrored_pieces (dungeon_t *dg)
          */
         if (dg->jigpieces_cnt >= JIGPIECE_MAX) {
             ERR("Too many jigpiece to mirror");
-        }
+        } else dungeon_resize_jigpiece(dg, dg->jigpieces_cnt+1);
 
         for (x = 0; x < JIGPIECE_WIDTH; x++) {
             for (y = 0; y < JIGPIECE_HEIGHT; y++) {
@@ -1753,7 +1809,7 @@ static void jigpiece_create_mirrored_pieces (dungeon_t *dg)
          */
         if (dg->jigpieces_cnt >= JIGPIECE_MAX) {
             ERR("Too many jigpiece to mirror");
-        }
+        } else dungeon_resize_jigpiece(dg, dg->jigpieces_cnt+1);
 
         for (x = 0; x < JIGPIECE_WIDTH; x++) {
             for (y = 0; y < JIGPIECE_HEIGHT; y++) {
@@ -1777,7 +1833,7 @@ static void jigpiece_create_mirrored_pieces (dungeon_t *dg)
          */
         if (dg->jigpieces_cnt >= JIGPIECE_MAX - 1) {
             ERR("Too many jigpiece to mirror");
-        }
+        } else dungeon_resize_jigpiece(dg, dg->jigpieces_cnt+2);
 
         for (x = 0; x < JIGPIECE_WIDTH; x++) {
             for (y = 0; y < JIGPIECE_HEIGHT; y++) {
@@ -1831,6 +1887,7 @@ static void jigpiece_create_mirrored_frag (dungeon_t *dg)
     int32_t y;
     int32_t dir;
 
+    dungeon_resize_frag(dg, dg->frag_cnt+2);
     for (c = 0; c < dg->frag_cnt; c++) {
         /*
          * Generate 3 rotations
@@ -1945,6 +2002,7 @@ static void jigpiece_create_mirrored_frag_alt (dungeon_t *dg)
     int32_t y;
     int32_t dir;
 
+    dungeon_resize_frag_alt(dg, dg->frag_alt_cnt+1);
     for (c = 0; c < dg->frag_alt_cnt; c++) {
 
         for (y = 0; y < JIGPIECE_HEIGHT; y++) {
@@ -3107,7 +3165,7 @@ static int32_t generate_level (levelp level,
 
     char *buf;
 
-    dg = (typeof(dg)) myzalloc(sizeof(*dg), __FUNCTION__);
+    dg = new_dungeon();
 
     if (opt_seed) {
         maze_seed = opt_seed;
@@ -3194,7 +3252,7 @@ static int32_t generate_level (levelp level,
 
     LOG("Maze: Created");
 
-    myfree(dg);
+    delete_dungeon(dg);
 
     return (1);
 }
