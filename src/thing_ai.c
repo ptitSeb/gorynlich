@@ -680,7 +680,8 @@ static void *dmap_thread2_func (void *context)
                    &server_level->map_player_target_treat_doors_as_walls,
                    sizeof(map_player_target_treat_doors_as_walls));
 
-            level_walls tmp;
+            level_walls tmp, ref;
+            dmap_init(&ref, &map_player_target_treat_doors_as_walls);
             uint32_t x, y;
 
             for (x = 0; x < MAP_WIDTH; x++) {
@@ -692,7 +693,8 @@ static void *dmap_thread2_func (void *context)
                         continue;
                     }
 
-                    dmap_init(&tmp, &map_player_target_treat_doors_as_walls);
+                    //dmap_init(&tmp, &map_player_target_treat_doors_as_walls);
+                    memcpy(&tmp, &ref, sizeof(tmp));
 
                     /*
                      * Set the goal.
