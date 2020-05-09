@@ -72,6 +72,8 @@ unsigned char *file_read (const char *filename, int32_t *out_len)
     if (out_len) {
         *out_len = len;
     }
+    // mark the end of buffer
+    buffer[len] = '\0';
 
     LOG("Disk read %s, %d bytes", filename, len);
 
