@@ -3165,8 +3165,6 @@ static int32_t generate_level (levelp level,
 
     char *buf;
 
-    dg = new_dungeon();
-
     if (opt_seed) {
         maze_seed = opt_seed;
     } else {
@@ -3188,6 +3186,8 @@ static int32_t generate_level (levelp level,
     if (!buf) {
         ERR("no buf");
     }
+
+    dg = new_dungeon();
 
     jigpieces_read(dg, buf);
     myfree(buf);
