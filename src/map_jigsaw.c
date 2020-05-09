@@ -241,7 +241,8 @@ typedef struct {
      * Triggers
      */
     int32_t trigger_fragment_cnt;
-    jigpiece_t trigger_fragment[MAZE_FRAG_DIRECTIONS][JIGPIECE_MAX];
+    int32_t trigger_fragment_cap;
+    jigpiece_t* trigger_fragment[MAZE_FRAG_DIRECTIONS];
     int32_t trigger_fragment_to_alt_base[JIGPIECE_MAX];
     int32_t trigger_cnt_alts[JIGPIECE_MAX];
     int32_t action1_cnt_alts[JIGPIECE_MAX];
@@ -251,10 +252,14 @@ typedef struct {
     int32_t action1_cnt;
     int32_t action2_cnt;
     int32_t action3_cnt;
-    jigpiece_t trigger[MAZE_FRAG_DIRECTIONS][JIGPIECE_MAX];
-    jigpiece_t action1[MAZE_FRAG_DIRECTIONS][JIGPIECE_MAX];
-    jigpiece_t action2[MAZE_FRAG_DIRECTIONS][JIGPIECE_MAX];
-    jigpiece_t action3[MAZE_FRAG_DIRECTIONS][JIGPIECE_MAX];
+    int32_t trigger_cap;
+    int32_t action1_cap;
+    int32_t action2_cap;
+    int32_t action3_cap;
+    jigpiece_t* trigger[MAZE_FRAG_DIRECTIONS];
+    jigpiece_t* action1[MAZE_FRAG_DIRECTIONS];
+    jigpiece_t* action2[MAZE_FRAG_DIRECTIONS];
+    jigpiece_t* action3[MAZE_FRAG_DIRECTIONS];
 
     maze_cell_t maze[MAP_JIGSAW_PIECES_ACROSS * MAP_JIGSAW_PIECES_DOWN];
 
@@ -280,6 +285,11 @@ static void delete_dungeon(dungeon_t *dg)
     for (int i=0; i<MAZE_FRAG_DIRECTIONS; ++i) {
         myfree(dg->frag[i]);
         myfree(dg->frag_alt[i]);
+        myfree(dg->trigger_fragment[i]);
+        myfree(dg->trigger[i]);
+        myfree(dg->action1[i]);
+        myfree(dg->action2[i]);
+        myfree(dg->action3[i]);
     }
     myfree(dg);
 }
@@ -315,6 +325,66 @@ static void dungeon_resize_frag_alt(dungeon_t *dg, int32_t n)
         dg->frag_alt[i] = (jigpiece_t*) myrealloc(dg->frag_alt[i], dg->frag_alt_cap*sizeof(jigpiece_t), __FUNCTION__);
         for (int j=old; j<dg->frag_alt_cap; ++j)
             memset(&dg->frag_alt[i][j], 0, sizeof(jigpiece_t));
+    }
+}
+static void dungeon_resize_trigger_fragment(dungeon_t *dg, int32_t n)
+{
+    if(dg->trigger_fragment_cap>n)
+        return;
+    int old = dg->trigger_fragment_cap;
+    dg->trigger_fragment_cap += 10;
+    for(int i=0; i<MAZE_FRAG_DIRECTIONS; ++i) {
+        dg->trigger_fragment[i] = (jigpiece_t*) myrealloc(dg->trigger_fragment[i], dg->trigger_fragment_cap*sizeof(jigpiece_t), __FUNCTION__);
+        for (int j=old; j<dg->trigger_fragment_cap; ++j)
+            memset(&dg->trigger_fragment[i][j], 0, sizeof(jigpiece_t));
+    }
+}
+static void dungeon_resize_trigger(dungeon_t *dg, int32_t n)
+{
+    if(dg->trigger_cap>n)
+        return;
+    int old = dg->trigger_cap;
+    dg->trigger_cap += 10;
+    for(int i=0; i<MAZE_FRAG_DIRECTIONS; ++i) {
+        dg->trigger[i] = (jigpiece_t*) myrealloc(dg->trigger[i], dg->trigger_cap*sizeof(jigpiece_t), __FUNCTION__);
+        for (int j=old; j<dg->trigger_cap; ++j)
+            memset(&dg->trigger[i][j], 0, sizeof(jigpiece_t));
+    }
+}
+static void dungeon_resize_action1(dungeon_t *dg, int32_t n)
+{
+    if(dg->action1_cap>n)
+        return;
+    int old = dg->action1_cap;
+    dg->action1_cap += 10;
+    for(int i=0; i<MAZE_FRAG_DIRECTIONS; ++i) {
+        dg->action1[i] = (jigpiece_t*) myrealloc(dg->action1[i], dg->action1_cap*sizeof(jigpiece_t), __FUNCTION__);
+        for (int j=old; j<dg->action1_cap; ++j)
+            memset(&dg->action1[i][j], 0, sizeof(jigpiece_t));
+    }
+}
+static void dungeon_resize_action2(dungeon_t *dg, int32_t n)
+{
+    if(dg->action2_cap>n)
+        return;
+    int old = dg->action2_cap;
+    dg->action2_cap += 10;
+    for(int i=0; i<MAZE_FRAG_DIRECTIONS; ++i) {
+        dg->action2[i] = (jigpiece_t*) myrealloc(dg->action2[i], dg->action2_cap*sizeof(jigpiece_t), __FUNCTION__);
+        for (int j=old; j<dg->action2_cap; ++j)
+            memset(&dg->action2[i][j], 0, sizeof(jigpiece_t));
+    }
+}
+static void dungeon_resize_action3(dungeon_t *dg, int32_t n)
+{
+    if(dg->action3_cap>n)
+        return;
+    int old = dg->action3_cap;
+    dg->action3_cap += 10;
+    for(int i=0; i<MAZE_FRAG_DIRECTIONS; ++i) {
+        dg->action3[i] = (jigpiece_t*) myrealloc(dg->action3[i], dg->action3_cap*sizeof(jigpiece_t), __FUNCTION__);
+        for (int j=old; j<dg->action3_cap; ++j)
+            memset(&dg->action3[i][j], 0, sizeof(jigpiece_t));
     }
 }
 /*
@@ -783,6 +853,7 @@ static void jigpieces_read (dungeon_t *dg, char *buf)
                                         jigpiece_vert_flip;
 
                     } else if (reading_trigger_fragment) {
+                        dungeon_resize_trigger_fragment(dg, dg->trigger_fragment_cnt + n);
                         dg->trigger_fragment[0][dg->trigger_fragment_cnt + n].c[x][y] = *c;
                         dg->trigger_fragment[0][dg->trigger_fragment_cnt + n].rotatable = 
                                         jigpiece_rotatable;
@@ -792,6 +863,7 @@ static void jigpieces_read (dungeon_t *dg, char *buf)
                                         jigpiece_vert_flip;
 
                     } else if (reading_trigger) {
+                        dungeon_resize_trigger(dg, dg->trigger_cnt + n);
                         dg->trigger[0][dg->trigger_cnt + n].c[x][y] = *c;
                         dg->trigger[0][dg->trigger_cnt + n].rotatable = 
                                         jigpiece_rotatable;
@@ -801,6 +873,7 @@ static void jigpieces_read (dungeon_t *dg, char *buf)
                                         jigpiece_vert_flip;
 
                     } else if (reading_action1) {
+                        dungeon_resize_action1(dg, dg->action1_cnt + n);
                         dg->action1[0][dg->action1_cnt + n].c[x][y] = *c;
                         dg->action1[0][dg->action1_cnt + n].rotatable = 
                                         jigpiece_rotatable;
@@ -810,6 +883,7 @@ static void jigpieces_read (dungeon_t *dg, char *buf)
                                         jigpiece_vert_flip;
 
                     } else if (reading_action2) {
+                        dungeon_resize_action2(dg, dg->action2_cnt + n);
                         dg->action2[0][dg->action2_cnt + n].c[x][y] = *c;
                         dg->action2[0][dg->action2_cnt + n].rotatable = 
                                         jigpiece_rotatable;
@@ -819,6 +893,7 @@ static void jigpieces_read (dungeon_t *dg, char *buf)
                                         jigpiece_vert_flip;
 
                     } else if (reading_action3) {
+                        dungeon_resize_action3(dg, dg->action3_cnt + n);
                         dg->action3[0][dg->action3_cnt + n].c[x][y] = *c;
                         dg->action3[0][dg->action3_cnt + n].rotatable = 
                                         jigpiece_rotatable;
@@ -1668,6 +1743,12 @@ static void jigpiece_add_triggers (dungeon_t *dg)
                     } while (dg->trigger[dir][i].empty);
 
                     color = color_find_nth(color_n++);
+
+                    dungeon_resize_trigger(dg, i);
+                    dungeon_resize_trigger_fragment(dg, f);
+                    dungeon_resize_action1(dg, i);
+                    dungeon_resize_action2(dg, i);
+                    dungeon_resize_action3(dg, i);
 
                     /*
                      * Place the frag.
