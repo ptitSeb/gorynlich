@@ -6830,7 +6830,6 @@ ramdisk_t ramdisk_data[] = {
 void ramdisk_init (void)
 {
 #ifndef NORAMDISK
-#error STOOOOOP!
     ramdisk_data[0].data = data_gfx_anim_eyes_tga_start;
     ramdisk_data[0].len = (int32_t) (data_gfx_anim_eyes_tga_end - data_gfx_anim_eyes_tga_start);
     ramdisk_data[1].data = data_gfx_anim_treasure_chest_tga_start;
