@@ -69,8 +69,8 @@ FILE *LOG_STDOUT;
 FILE *LOG_STDERR;
 #endif
 
-uint8_t quitting;
-uint8_t opt_quickstart;
+uint8_t quitting = 0;
+uint8_t opt_quickstart = 0;
 
 void quit (void)
 {

@@ -35,9 +35,9 @@ typedef struct tex_ {
     SDL_Surface *surface;
 } tex;
 
-tree_root *textures;
+tree_root *textures = NULL;
 
-static uint8_t tex_init_done;
+static uint8_t tex_init_done = 0;
 
 static texp tex_black_and_white(SDL_Surface *in,
                                 const char *file,
